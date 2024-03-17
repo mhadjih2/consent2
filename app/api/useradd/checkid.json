@@ -1,0 +1,328 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/views/confirm.ejs",
+      "linkedForm": "form1"
+    },
+    "$_POST": [
+      {
+        "type": "text",
+        "fieldName": "id",
+        "name": "id"
+      },
+      {
+        "type": "text",
+        "fieldName": "email",
+        "name": "email"
+      },
+      {
+        "type": "number",
+        "name": "consent_id"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "validate",
+        "module": "validator",
+        "action": "validate",
+        "options": {
+          "data": [
+            {
+              "name": "validate_1",
+              "value": "{{$_POST.email}}",
+              "rules": {
+                "db:exists": {
+                  "param": {
+                    "connection": "db",
+                    "table": "consent",
+                    "column": "emailaddress"
+                  }
+                }
+              },
+              "fieldName": "email"
+            }
+          ]
+        }
+      },
+      {
+        "name": "query",
+        "module": "dbconnector",
+        "action": "single",
+        "options": {
+          "connection": "db",
+          "sql": {
+            "type": "select",
+            "columns": [
+              {
+                "table": "consent",
+                "column": "*"
+              }
+            ],
+            "params": [
+              {
+                "operator": "equal",
+                "type": "expression",
+                "name": ":P1",
+                "value": "{{$_POST.email}}",
+                "test": ""
+              }
+            ],
+            "table": {
+              "name": "consent"
+            },
+            "primary": "consent_id",
+            "joins": [],
+            "wheres": {
+              "condition": "AND",
+              "rules": [
+                {
+                  "id": "consent.emailaddress",
+                  "field": "consent.emailaddress",
+                  "type": "string",
+                  "operator": "equal",
+                  "value": "{{$_POST.email}}",
+                  "data": {
+                    "table": "consent",
+                    "column": "emailaddress",
+                    "type": "text",
+                    "columnObj": {
+                      "type": "string",
+                      "maxLength": 255,
+                      "primary": false,
+                      "unique": false,
+                      "nullable": true,
+                      "name": "emailaddress"
+                    }
+                  },
+                  "operation": "="
+                }
+              ],
+              "conditional": null,
+              "valid": true
+            },
+            "query": "select * from `consent` where `consent`.`emailaddress` = ?"
+          }
+        },
+        "meta": [
+          {
+            "type": "number",
+            "name": "consent_id"
+          },
+          {
+            "type": "text",
+            "name": "first_name"
+          },
+          {
+            "type": "text",
+            "name": "last_name"
+          },
+          {
+            "type": "text",
+            "name": "artist_name"
+          },
+          {
+            "type": "text",
+            "name": "ISRC"
+          },
+          {
+            "type": "text",
+            "name": "song1_name"
+          },
+          {
+            "type": "datetime",
+            "name": "consent_date"
+          },
+          {
+            "type": "text",
+            "name": "emailaddress"
+          },
+          {
+            "type": "datetime",
+            "name": "mail_sent"
+          },
+          {
+            "type": "text",
+            "name": "verification_code"
+          },
+          {
+            "type": "datetime",
+            "name": "verification_date"
+          },
+          {
+            "type": "text",
+            "name": "song2_name"
+          },
+          {
+            "type": "text",
+            "name": "song3_name"
+          },
+          {
+            "type": "text",
+            "name": "upload1_name"
+          },
+          {
+            "type": "text",
+            "name": "upload2_name"
+          },
+          {
+            "type": "text",
+            "name": "upload3_name"
+          },
+          {
+            "type": "text",
+            "name": "upload1_url"
+          },
+          {
+            "type": "text",
+            "name": "upload2_url"
+          },
+          {
+            "type": "text",
+            "name": "upload3_url"
+          },
+          {
+            "type": "text",
+            "name": "bio"
+          },
+          {
+            "type": "text",
+            "name": "featured_image"
+          },
+          {
+            "type": "datetime",
+            "name": "apply_date"
+          },
+          {
+            "type": "text",
+            "name": "image2"
+          },
+          {
+            "type": "text",
+            "name": "image3"
+          },
+          {
+            "type": "datetime",
+            "name": "played_date"
+          },
+          {
+            "type": "text",
+            "name": "rating"
+          }
+        ],
+        "outputType": "object"
+      },
+      {
+        "name": "verify_code",
+        "module": "core",
+        "action": "setvalue",
+        "options": {
+          "value": "{{query.first_name.sha256($_POST.email)}}"
+        },
+        "meta": [],
+        "outputType": "text"
+      },
+      {
+        "name": "",
+        "module": "core",
+        "action": "condition",
+        "options": {
+          "if": "{{verify_code==$_POST.id}}",
+          "then": {
+            "steps": [
+              {
+                "name": "update",
+                "module": "dbupdater",
+                "action": "update",
+                "options": {
+                  "connection": "db",
+                  "sql": {
+                    "type": "update",
+                    "values": [
+                      {
+                        "table": "consent",
+                        "column": "verification_code",
+                        "type": "text",
+                        "value": ""
+                      },
+                      {
+                        "table": "consent",
+                        "column": "verification_date",
+                        "type": "datetime",
+                        "value": "{{NOW}}"
+                      }
+                    ],
+                    "table": "consent",
+                    "wheres": {
+                      "condition": "AND",
+                      "rules": [
+                        {
+                          "id": "emailaddress",
+                          "field": "emailaddress",
+                          "type": "string",
+                          "operator": "equal",
+                          "value": "{{$_POST.email}}",
+                          "data": {
+                            "column": "emailaddress"
+                          },
+                          "operation": "="
+                        }
+                      ],
+                      "conditional": null,
+                      "valid": true
+                    },
+                    "returning": "consent_id",
+                    "query": "update `consent` set `verification_code` = ?, `verification_date` = ? where `emailaddress` = ? returning `consent_id`",
+                    "params": [
+                      {
+                        "name": ":P1",
+                        "type": "expression",
+                        "value": "{{NOW}}",
+                        "test": ""
+                      },
+                      {
+                        "operator": "equal",
+                        "type": "expression",
+                        "name": ":P2",
+                        "value": "{{$_POST.email}}",
+                        "test": ""
+                      }
+                    ]
+                  }
+                },
+                "meta": [
+                  {
+                    "name": "affected",
+                    "type": "number"
+                  }
+                ]
+              },
+              {
+                "name": "allokay",
+                "module": "core",
+                "action": "response",
+                "options": {
+                  "status": 200,
+                  "data": "All okay!"
+                }
+              }
+            ]
+          },
+          "else": {
+            "steps": {
+              "name": "nope",
+              "module": "core",
+              "action": "response",
+              "options": {
+                "status": 401,
+                "data": "Nope!"
+              }
+            }
+          }
+        },
+        "outputType": "boolean"
+      }
+    ]
+  }
+}

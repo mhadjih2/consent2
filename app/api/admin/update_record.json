@@ -1,0 +1,995 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/views/ucr/adminucr.ejs",
+      "linkedForm": "serverconnectform1"
+    },
+    "$_POST": [
+      {
+        "type": "number",
+        "fieldName": "consent_id",
+        "options": {
+          "rules": {
+            "core:number": {}
+          }
+        },
+        "name": "consent_id"
+      },
+      {
+        "type": "text",
+        "fieldName": "ticker",
+        "name": "ticker"
+      },
+      {
+        "type": "text",
+        "name": "emailaddress"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "",
+        "module": "auth",
+        "action": "restrict",
+        "options": {
+          "provider": "security",
+          "permissions": [
+            "admin"
+          ],
+          "loginUrl": "/login",
+          "forbiddenUrl": "/login"
+        }
+      },
+      {
+        "name": "query_single_record",
+        "module": "dbconnector",
+        "action": "single",
+        "options": {
+          "connection": "db",
+          "sql": {
+            "type": "select",
+            "columns": [
+              {
+                "table": "consent",
+                "column": "*"
+              }
+            ],
+            "params": [
+              {
+                "operator": "equal",
+                "type": "expression",
+                "name": ":P1",
+                "value": "{{$_POST.consent_id}}",
+                "test": ""
+              }
+            ],
+            "table": {
+              "name": "consent"
+            },
+            "primary": "consent_id",
+            "joins": [],
+            "wheres": {
+              "condition": "AND",
+              "rules": [
+                {
+                  "id": "consent.consent_id",
+                  "field": "consent.consent_id",
+                  "type": "double",
+                  "operator": "equal",
+                  "value": "{{$_POST.consent_id}}",
+                  "data": {
+                    "table": "consent",
+                    "column": "consent_id",
+                    "type": "number",
+                    "columnObj": {
+                      "type": "increments",
+                      "primary": true,
+                      "unique": false,
+                      "nullable": false,
+                      "name": "consent_id"
+                    }
+                  },
+                  "operation": "="
+                }
+              ],
+              "conditional": null,
+              "valid": true
+            },
+            "query": "select * from `consent` where `consent`.`consent_id` = ?"
+          }
+        },
+        "meta": [
+          {
+            "type": "number",
+            "name": "consent_id"
+          },
+          {
+            "type": "text",
+            "name": "first_name"
+          },
+          {
+            "type": "text",
+            "name": "last_name"
+          },
+          {
+            "type": "text",
+            "name": "artist_name"
+          },
+          {
+            "type": "text",
+            "name": "ISRC"
+          },
+          {
+            "type": "text",
+            "name": "song1_name"
+          },
+          {
+            "type": "datetime",
+            "name": "consent_date"
+          },
+          {
+            "type": "text",
+            "name": "emailaddress"
+          },
+          {
+            "type": "datetime",
+            "name": "mail_sent"
+          },
+          {
+            "type": "text",
+            "name": "verification_code"
+          },
+          {
+            "type": "datetime",
+            "name": "verification_date"
+          },
+          {
+            "type": "text",
+            "name": "song2_name"
+          },
+          {
+            "type": "text",
+            "name": "song3_name"
+          },
+          {
+            "type": "text",
+            "name": "upload1_name"
+          },
+          {
+            "type": "text",
+            "name": "upload2_name"
+          },
+          {
+            "type": "text",
+            "name": "upload3_name"
+          },
+          {
+            "type": "text",
+            "name": "upload1_url"
+          },
+          {
+            "type": "text",
+            "name": "upload2_url"
+          },
+          {
+            "type": "text",
+            "name": "upload3_url"
+          },
+          {
+            "type": "text",
+            "name": "bio"
+          },
+          {
+            "type": "text",
+            "name": "featured_image"
+          },
+          {
+            "type": "datetime",
+            "name": "apply_date"
+          },
+          {
+            "type": "text",
+            "name": "image2"
+          },
+          {
+            "type": "text",
+            "name": "image3"
+          },
+          {
+            "type": "datetime",
+            "name": "played_date"
+          },
+          {
+            "type": "text",
+            "name": "rating"
+          },
+          {
+            "type": "text",
+            "name": "ticker"
+          }
+        ],
+        "outputType": "object"
+      },
+      {
+        "name": "",
+        "module": "core",
+        "action": "condition",
+        "options": {
+          "if": "{{$_POST.image1}}",
+          "then": {
+            "steps": [
+              {
+                "name": "upload",
+                "module": "upload",
+                "action": "upload",
+                "options": {
+                  "fields": "{{$_POST.image1}}",
+                  "overwrite": true,
+                  "replaceSpace": true,
+                  "replaceDiacritics": true,
+                  "asciiOnly": true,
+                  "path": "/public/uploads/images"
+                },
+                "meta": [],
+                "outputType": "file"
+              },
+              {
+                "name": "image",
+                "module": "image",
+                "action": "load",
+                "options": {
+                  "path": "{{upload.path}}"
+                },
+                "outputType": "object",
+                "meta": [
+                  {
+                    "name": "width",
+                    "type": "number"
+                  },
+                  {
+                    "name": "height",
+                    "type": "number"
+                  }
+                ]
+              },
+              {
+                "name": "",
+                "module": "image",
+                "action": "resize",
+                "options": {
+                  "instance": "image",
+                  "width": 768,
+                  "upscale": true
+                }
+              },
+              {
+                "name": "newImage",
+                "module": "image",
+                "action": "save",
+                "options": {
+                  "instance": "image",
+                  "format": "auto",
+                  "path": "/public/uploads/images/coverfit",
+                  "overwrite": true
+                }
+              },
+              {
+                "name": "",
+                "module": "image",
+                "action": "cover",
+                "options": {
+                  "instance": "image",
+                  "width": 400,
+                  "height": 400
+                }
+              },
+              {
+                "name": "newImage1",
+                "module": "image",
+                "action": "save",
+                "options": {
+                  "instance": "image",
+                  "format": "auto",
+                  "path": "/public/uploads/images/resizedx768",
+                  "overwrite": true
+                }
+              },
+              {
+                "name": "update",
+                "module": "dbupdater",
+                "action": "update",
+                "options": {
+                  "connection": "db",
+                  "sql": {
+                    "type": "update",
+                    "values": [
+                      {
+                        "table": "consent",
+                        "column": "featured_image",
+                        "type": "text",
+                        "value": "{{upload.path}}",
+                        "recid": 1
+                      }
+                    ],
+                    "table": "consent",
+                    "wheres": {
+                      "condition": "AND",
+                      "rules": [
+                        {
+                          "id": "emailaddress",
+                          "field": "emailaddress",
+                          "type": "string",
+                          "operator": "equal",
+                          "value": "{{$_POST.emailaddress}}",
+                          "data": {
+                            "column": "emailaddress"
+                          },
+                          "operation": "="
+                        }
+                      ],
+                      "conditional": null,
+                      "valid": true
+                    },
+                    "returning": "consent_id",
+                    "query": "update `consent` set `featured_image` = ? where `emailaddress` = ? returning `consent_id`",
+                    "params": [
+                      {
+                        "name": ":P1",
+                        "type": "expression",
+                        "value": "{{upload.path}}",
+                        "test": ""
+                      },
+                      {
+                        "operator": "equal",
+                        "type": "expression",
+                        "name": ":P2",
+                        "value": "{{$_POST.emailaddress}}",
+                        "test": ""
+                      }
+                    ]
+                  }
+                },
+                "meta": [
+                  {
+                    "name": "affected",
+                    "type": "number"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "outputType": "boolean",
+        "disabled": true
+      },
+      {
+        "name": "",
+        "module": "core",
+        "action": "condition",
+        "options": {
+          "if": "{{$_POST.image2}}",
+          "then": {
+            "steps": [
+              {
+                "name": "upload_copy",
+                "module": "upload",
+                "action": "upload",
+                "options": {
+                  "fields": "{{$_POST.image2}}",
+                  "overwrite": true,
+                  "replaceSpace": true,
+                  "replaceDiacritics": true,
+                  "asciiOnly": true,
+                  "path": "/public/uploads/images"
+                },
+                "meta": [],
+                "outputType": "file"
+              },
+              {
+                "name": "image_copy",
+                "module": "image",
+                "action": "load",
+                "options": {
+                  "path": "{{upload_copy.path}}"
+                },
+                "outputType": "object",
+                "meta": [
+                  {
+                    "name": "width",
+                    "type": "number"
+                  },
+                  {
+                    "name": "height",
+                    "type": "number"
+                  }
+                ]
+              },
+              {
+                "name": "",
+                "module": "image",
+                "action": "resize",
+                "options": {
+                  "instance": "image_copy",
+                  "width": 768,
+                  "upscale": true
+                }
+              },
+              {
+                "name": "newImage_copy",
+                "module": "image",
+                "action": "save",
+                "options": {
+                  "instance": "image_copy",
+                  "format": "auto",
+                  "path": "/public/uploads/images/coverfit",
+                  "overwrite": true
+                }
+              },
+              {
+                "name": "",
+                "module": "image",
+                "action": "cover",
+                "options": {
+                  "instance": "image_copy",
+                  "width": 400,
+                  "height": 400
+                }
+              },
+              {
+                "name": "newImage1_copy",
+                "module": "image",
+                "action": "save",
+                "options": {
+                  "instance": "image_copy",
+                  "format": "auto",
+                  "path": "/public/uploads/images/resizedx768",
+                  "overwrite": true
+                }
+              },
+              {
+                "name": "update_copy",
+                "module": "dbupdater",
+                "action": "update",
+                "options": {
+                  "connection": "db",
+                  "sql": {
+                    "type": "update",
+                    "values": [
+                      {
+                        "table": "consent",
+                        "column": "image2",
+                        "type": "text",
+                        "value": "{{upload_copy.path}}"
+                      }
+                    ],
+                    "table": "consent",
+                    "wheres": {
+                      "condition": "AND",
+                      "rules": [
+                        {
+                          "id": "emailaddress",
+                          "field": "emailaddress",
+                          "type": "string",
+                          "operator": "equal",
+                          "value": "{{$_POST.emailaddress}}",
+                          "data": {
+                            "column": "emailaddress"
+                          },
+                          "operation": "="
+                        }
+                      ],
+                      "conditional": null,
+                      "valid": true
+                    },
+                    "returning": "consent_id",
+                    "query": "update `consent` set `image2` = ? where `emailaddress` = ? returning `consent_id`",
+                    "params": [
+                      {
+                        "name": ":P1",
+                        "type": "expression",
+                        "value": "{{upload_copy.path}}",
+                        "test": ""
+                      },
+                      {
+                        "operator": "equal",
+                        "type": "expression",
+                        "name": ":P2",
+                        "value": "{{$_POST.emailaddress}}",
+                        "test": ""
+                      }
+                    ]
+                  }
+                },
+                "meta": [
+                  {
+                    "name": "affected",
+                    "type": "number"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "outputType": "boolean",
+        "disabled": true
+      },
+      {
+        "name": "",
+        "module": "core",
+        "action": "condition",
+        "options": {
+          "if": "{{$_POST.image3}}",
+          "then": {
+            "steps": [
+              {
+                "name": "upload_copy_copy",
+                "module": "upload",
+                "action": "upload",
+                "options": {
+                  "fields": "{{$_POST.image3}}",
+                  "overwrite": true,
+                  "replaceSpace": true,
+                  "replaceDiacritics": true,
+                  "asciiOnly": true,
+                  "path": "/public/uploads/images"
+                },
+                "meta": [],
+                "outputType": "file"
+              },
+              {
+                "name": "image_copy_copy",
+                "module": "image",
+                "action": "load",
+                "options": {
+                  "path": "{{upload_copy_copy.path}}"
+                },
+                "outputType": "object",
+                "meta": [
+                  {
+                    "name": "width",
+                    "type": "number"
+                  },
+                  {
+                    "name": "height",
+                    "type": "number"
+                  }
+                ]
+              },
+              {
+                "name": "",
+                "module": "image",
+                "action": "resize",
+                "options": {
+                  "instance": "image_copy_copy",
+                  "width": 768,
+                  "upscale": true
+                }
+              },
+              {
+                "name": "newImage_copy_copy",
+                "module": "image",
+                "action": "save",
+                "options": {
+                  "instance": "image_copy_copy",
+                  "format": "auto",
+                  "path": "/public/uploads/images/coverfit",
+                  "overwrite": true
+                }
+              },
+              {
+                "name": "",
+                "module": "image",
+                "action": "cover",
+                "options": {
+                  "instance": "image_copy_copy",
+                  "width": 400,
+                  "height": 400
+                }
+              },
+              {
+                "name": "newImage1_copy_copy",
+                "module": "image",
+                "action": "save",
+                "options": {
+                  "instance": "image_copy_copy",
+                  "format": "auto",
+                  "path": "/public/uploads/images/resizedx768",
+                  "overwrite": true
+                }
+              },
+              {
+                "name": "update_copy_copy",
+                "module": "dbupdater",
+                "action": "update",
+                "options": {
+                  "connection": "db",
+                  "sql": {
+                    "type": "update",
+                    "values": [
+                      {
+                        "table": "consent",
+                        "column": "image3",
+                        "type": "text",
+                        "value": "{{upload_copy_copy.path}}"
+                      }
+                    ],
+                    "table": "consent",
+                    "wheres": {
+                      "condition": "AND",
+                      "rules": [
+                        {
+                          "id": "emailaddress",
+                          "field": "emailaddress",
+                          "type": "string",
+                          "operator": "equal",
+                          "value": "{{$_POST.emailaddress}}",
+                          "data": {
+                            "column": "emailaddress"
+                          },
+                          "operation": "="
+                        }
+                      ],
+                      "conditional": null,
+                      "valid": true
+                    },
+                    "returning": "consent_id",
+                    "query": "update `consent` set `image3` = ? where `emailaddress` = ? returning `consent_id`",
+                    "params": [
+                      {
+                        "name": ":P1",
+                        "type": "expression",
+                        "value": "{{upload_copy_copy.path}}",
+                        "test": ""
+                      },
+                      {
+                        "operator": "equal",
+                        "type": "expression",
+                        "name": ":P2",
+                        "value": "{{$_POST.emailaddress}}",
+                        "test": ""
+                      }
+                    ]
+                  }
+                },
+                "meta": [
+                  {
+                    "name": "affected",
+                    "type": "number"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "outputType": "boolean",
+        "disabled": true
+      },
+      {
+        "name": "",
+        "module": "core",
+        "action": "condition",
+        "options": {
+          "if": "{{$_POST.songfile1}}",
+          "then": {
+            "steps": [
+              {
+                "name": "upload1",
+                "module": "upload",
+                "action": "upload",
+                "options": {
+                  "fields": "{{$_POST.songfile1}}",
+                  "path": "/public/uploads/songs",
+                  "replaceSpace": true,
+                  "replaceDiacritics": true,
+                  "asciiOnly": true,
+                  "overwrite": true
+                },
+                "meta": [],
+                "outputType": "file"
+              },
+              {
+                "name": "update1",
+                "module": "dbupdater",
+                "action": "update",
+                "options": {
+                  "connection": "db",
+                  "sql": {
+                    "type": "update",
+                    "values": [
+                      {
+                        "table": "consent",
+                        "column": "song1_name",
+                        "type": "text",
+                        "value": "{{$_POST.song1_name}}"
+                      }
+                    ],
+                    "table": "consent",
+                    "wheres": {
+                      "condition": "AND",
+                      "rules": [
+                        {
+                          "id": "consent_id",
+                          "type": "double",
+                          "operator": "equal",
+                          "value": "{{$_POST.consent_id}}",
+                          "data": {
+                            "column": "consent_id"
+                          },
+                          "operation": "="
+                        }
+                      ]
+                    },
+                    "returning": "consent_id",
+                    "query": "update `consent` set `song1_name` = ? where `consent_id` = ?",
+                    "params": [
+                      {
+                        "name": ":P1",
+                        "type": "expression",
+                        "value": "{{$_POST.song1_name}}",
+                        "test": ""
+                      },
+                      {
+                        "operator": "equal",
+                        "type": "expression",
+                        "name": ":P2",
+                        "value": "{{$_POST.consent_id}}",
+                        "test": ""
+                      }
+                    ]
+                  }
+                },
+                "meta": [
+                  {
+                    "name": "affected",
+                    "type": "number"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "outputType": "boolean",
+        "disabled": true
+      },
+      {
+        "name": "",
+        "module": "core",
+        "action": "condition",
+        "options": {
+          "if": "{{$_POST.songfile2}}",
+          "then": {
+            "steps": [
+              {
+                "name": "upload1_copy",
+                "module": "upload",
+                "action": "upload",
+                "options": {
+                  "fields": "{{$_POST.songfile2}}",
+                  "path": "/public/uploads/songs",
+                  "replaceSpace": true,
+                  "replaceDiacritics": true,
+                  "asciiOnly": true,
+                  "overwrite": true
+                },
+                "meta": [],
+                "outputType": "file"
+              },
+              {
+                "name": "update1_copy",
+                "module": "dbupdater",
+                "action": "update",
+                "options": {
+                  "connection": "db",
+                  "sql": {
+                    "type": "update",
+                    "values": [
+                      {
+                        "table": "consent",
+                        "column": "song2_name",
+                        "type": "text",
+                        "value": "{{$_POST.song2_name}}"
+                      }
+                    ],
+                    "table": "consent",
+                    "wheres": {
+                      "condition": "AND",
+                      "rules": [
+                        {
+                          "id": "consent_id",
+                          "type": "double",
+                          "operator": "equal",
+                          "value": "{{$_POST.consent_id}}",
+                          "data": {
+                            "column": "consent_id"
+                          },
+                          "operation": "="
+                        }
+                      ]
+                    },
+                    "returning": "consent_id",
+                    "query": "update `consent` set `song2_name` = ? where `consent_id` = ? returning `consent_id`",
+                    "params": [
+                      {
+                        "name": ":P1",
+                        "type": "expression",
+                        "value": "{{$_POST.song2_name}}",
+                        "test": ""
+                      },
+                      {
+                        "operator": "equal",
+                        "type": "expression",
+                        "name": ":P2",
+                        "value": "{{$_POST.consent_id}}",
+                        "test": ""
+                      }
+                    ]
+                  }
+                },
+                "meta": [
+                  {
+                    "name": "affected",
+                    "type": "number"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "outputType": "boolean",
+        "disabled": true
+      },
+      {
+        "name": "",
+        "module": "core",
+        "action": "condition",
+        "options": {
+          "if": "{{$_POST.songfile3}}",
+          "then": {
+            "steps": [
+              {
+                "name": "upload1_copy",
+                "module": "upload",
+                "action": "upload",
+                "options": {
+                  "fields": "{{$_POST.songfile3}}",
+                  "path": "/public/uploads/songs",
+                  "replaceSpace": true,
+                  "replaceDiacritics": true,
+                  "asciiOnly": true,
+                  "overwrite": true
+                },
+                "meta": [],
+                "outputType": "file"
+              },
+              {
+                "name": "update1_copy",
+                "module": "dbupdater",
+                "action": "update",
+                "options": {
+                  "connection": "db",
+                  "sql": {
+                    "type": "update",
+                    "values": [
+                      {
+                        "table": "consent",
+                        "column": "song3_name",
+                        "type": "text",
+                        "value": "{{$_POST.song3_name}}"
+                      }
+                    ],
+                    "table": "consent",
+                    "wheres": {
+                      "condition": "AND",
+                      "rules": [
+                        {
+                          "id": "consent_id",
+                          "type": "double",
+                          "operator": "equal",
+                          "value": "{{$_POST.consent_id}}",
+                          "data": {
+                            "column": "consent_id"
+                          },
+                          "operation": "="
+                        }
+                      ]
+                    },
+                    "returning": "consent_id",
+                    "query": "update `consent` set `song3_name` = ? where `consent_id` = ? returning `consent_id`",
+                    "params": [
+                      {
+                        "name": ":P1",
+                        "type": "expression",
+                        "value": "{{$_POST.song3_name}}",
+                        "test": ""
+                      },
+                      {
+                        "operator": "equal",
+                        "type": "expression",
+                        "name": ":P2",
+                        "value": "{{$_POST.consent_id}}",
+                        "test": ""
+                      }
+                    ]
+                  }
+                },
+                "meta": [
+                  {
+                    "name": "affected",
+                    "type": "number"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "outputType": "boolean",
+        "disabled": true
+      },
+      {
+        "name": "update2",
+        "module": "dbupdater",
+        "action": "update",
+        "options": {
+          "connection": "db",
+          "sql": {
+            "type": "update",
+            "values": [
+              {
+                "table": "consent",
+                "column": "ticker",
+                "type": "text",
+                "value": "{{$_POST.ticker}}"
+              }
+            ],
+            "table": "consent",
+            "wheres": {
+              "condition": "AND",
+              "rules": [
+                {
+                  "id": "emailaddress",
+                  "field": "emailaddress",
+                  "type": "string",
+                  "operator": "equal",
+                  "value": "{{$_POST.emailaddress}}",
+                  "data": {
+                    "column": "emailaddress"
+                  },
+                  "operation": "="
+                }
+              ],
+              "conditional": null,
+              "valid": true
+            },
+            "returning": "consent_id",
+            "query": "update `consent` set `ticker` = ? where `emailaddress` = ? returning `consent_id`",
+            "params": [
+              {
+                "name": ":P1",
+                "type": "expression",
+                "value": "{{$_POST.ticker}}",
+                "test": ""
+              },
+              {
+                "operator": "equal",
+                "type": "expression",
+                "name": ":P2",
+                "value": "{{$_POST.emailaddress}}",
+                "test": ""
+              }
+            ]
+          }
+        },
+        "meta": [
+          {
+            "name": "affected",
+            "type": "number"
+          }
+        ]
+      }
+    ]
+  },
+  "usedModules": {
+    "sharp": "^0.29.3"
+  }
+}

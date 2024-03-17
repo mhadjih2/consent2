@@ -1,0 +1,207 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "fieldName": "consent_id",
+        "name": "consent_id"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "",
+        "module": "auth",
+        "action": "restrict",
+        "options": {
+          "provider": "security",
+          "permissions": [
+            "admin"
+          ],
+          "loginUrl": "/login",
+          "forbiddenUrl": "/login"
+        }
+      },
+      {
+        "name": "query",
+        "module": "dbconnector",
+        "action": "single",
+        "options": {
+          "connection": "db",
+          "sql": {
+            "type": "select",
+            "columns": [
+              {
+                "table": "consent",
+                "column": "*"
+              }
+            ],
+            "params": [
+              {
+                "operator": "equal",
+                "type": "expression",
+                "name": ":P1",
+                "value": "{{$_GET.consent_id}}",
+                "test": ""
+              }
+            ],
+            "table": {
+              "name": "consent"
+            },
+            "primary": "consent_id",
+            "joins": [],
+            "query": "select * from `consent` where `consent`.`consent_id` = ? order by `consent_date` ASC",
+            "wheres": {
+              "condition": "AND",
+              "rules": [
+                {
+                  "id": "consent.consent_id",
+                  "field": "consent.consent_id",
+                  "type": "double",
+                  "operator": "equal",
+                  "value": "{{$_GET.consent_id}}",
+                  "data": {
+                    "table": "consent",
+                    "column": "consent_id",
+                    "type": "number",
+                    "columnObj": {
+                      "type": "increments",
+                      "primary": true,
+                      "unique": false,
+                      "nullable": false,
+                      "name": "consent_id"
+                    }
+                  },
+                  "operation": "="
+                }
+              ],
+              "conditional": null,
+              "valid": true
+            },
+            "orders": [
+              {
+                "table": "consent",
+                "column": "consent_date",
+                "direction": "ASC",
+                "recid": 1
+              }
+            ]
+          }
+        },
+        "output": true,
+        "meta": [
+          {
+            "type": "number",
+            "name": "consent_id"
+          },
+          {
+            "type": "text",
+            "name": "first_name"
+          },
+          {
+            "type": "text",
+            "name": "last_name"
+          },
+          {
+            "type": "text",
+            "name": "artist_name"
+          },
+          {
+            "type": "text",
+            "name": "ISRC"
+          },
+          {
+            "type": "text",
+            "name": "song1_name"
+          },
+          {
+            "type": "datetime",
+            "name": "consent_date"
+          },
+          {
+            "type": "text",
+            "name": "emailaddress"
+          },
+          {
+            "type": "datetime",
+            "name": "mail_sent"
+          },
+          {
+            "type": "text",
+            "name": "verification_code"
+          },
+          {
+            "type": "datetime",
+            "name": "verification_date"
+          },
+          {
+            "type": "text",
+            "name": "song2_name"
+          },
+          {
+            "type": "text",
+            "name": "song3_name"
+          },
+          {
+            "type": "text",
+            "name": "upload1_name"
+          },
+          {
+            "type": "text",
+            "name": "upload2_name"
+          },
+          {
+            "type": "text",
+            "name": "upload3_name"
+          },
+          {
+            "type": "text",
+            "name": "upload1_url"
+          },
+          {
+            "type": "text",
+            "name": "upload2_url"
+          },
+          {
+            "type": "text",
+            "name": "upload3_url"
+          },
+          {
+            "type": "text",
+            "name": "bio"
+          },
+          {
+            "type": "text",
+            "name": "featured_image"
+          },
+          {
+            "type": "datetime",
+            "name": "apply_date"
+          },
+          {
+            "type": "text",
+            "name": "image2"
+          },
+          {
+            "type": "text",
+            "name": "image3"
+          },
+          {
+            "type": "datetime",
+            "name": "played_date"
+          },
+          {
+            "type": "text",
+            "name": "rating"
+          },
+          {
+            "type": "text",
+            "name": "ticker"
+          }
+        ],
+        "outputType": "object"
+      }
+    ]
+  }
+}

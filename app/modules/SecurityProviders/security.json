@@ -1,0 +1,25 @@
+{
+  "name": "security",
+  "module": "auth",
+  "action": "provider",
+  "options": {
+    "secret": "xSvU4Bs71Lro7oF",
+    "provider": "Static",
+    "connection": "db",
+    "users": {
+      "adminucr": "Livemuziekkie1234!"
+    },
+    "perms": {
+      "admin": [
+        "adminucr"
+      ]
+    },
+    "expires": 1
+  },
+  "meta": [
+    {
+      "name": "identity",
+      "type": "text"
+    }
+  ]
+}

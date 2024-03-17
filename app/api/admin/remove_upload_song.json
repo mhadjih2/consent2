@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/views/ucr/adminucr.ejs",
+      "linkedForm": "serverconnectform1"
+    },
+    "$_POST": [
+      {
+        "type": "text",
+        "name": "remove_song"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "value",
+        "module": "core",
+        "action": "setvalue",
+        "options": {
+          "value": "{{$_POST.remove_song}}"
+        },
+        "meta": [],
+        "outputType": "text"
+      },
+      {
+        "name": "update",
+        "module": "dbupdater",
+        "action": "update",
+        "options": {
+          "connection": "db"
+        },
+        "meta": [
+          {
+            "name": "affected",
+            "type": "number"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,373 @@
+<!-- Wappler include head-page="layouts/admin" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="adminucr" appconnect="local" components="{dmxBootstrap5TableGenerator:{},dmxFormatter:{},dmxBootstrap5Modal:{},dmxBootstrap5Offcanvas:{},dmxVideo:{},dmxDropzone:{},dmxValidator:{},dmxNotifications:{},dmxBootstrap5Toasts:{},dmxBrowser:{},dmxTyped:{}}" style="--bs-body-color: #f8f9fa;" -->
+<dmx-serverconnect id="conn_remove_song" url="/api/admin/remove_upload_song" noload="true"></dmx-serverconnect>
+<dmx-serverconnect id="conn_add_newrecord" url="/api/admin/add_record" noload="true"></dmx-serverconnect>
+<dmx-serverconnect id="conn_update_record" url="/api/admin/update_record" noload="true"></dmx-serverconnect>
+<dmx-serverconnect id="conn_getsinglerec" url="/api/admin/getsingle_record" noload="true"></dmx-serverconnect>
+<dmx-serverconnect id="conn_getrecords" url="/api/admin/getrecords"></dmx-serverconnect>
+<div class="offcanvas offcanvas-end w-75" id="offcanvas1" is="dmx-bs5-offcanvas" tabindex="-1" scroll="true">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Edit Existing Record</h5>
+        <button id="btn7" class="btn" dmx-on:click="offcanvas1.hide()"><i class="far fa-times-circle fa-lg"></i></button>
+    </div>
+    <div class="offcanvas-body">
+        <form is="dmx-serverconnect-form" id="serverconnectform1" method="post" action="/api/admin/update_record" dmx-generator="bootstrap5" dmx-form-type="horizontal" dmx-populate="conn_getsinglerec.data.query">
+            <div class="form-group mb-3 row">
+                <label for="inp_first_name" class="col-sm-2 col-form-label">First name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_first_name" name="first_name" dmx-bind:value="conn_getsinglerec.data.query.first_name" aria-describedby="inp_first_name_help" placeholder="Enter First name">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_last_name" class="col-sm-2 col-form-label">Last name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_last_name" name="last_name" dmx-bind:value="conn_getsinglerec.data.query.last_name" aria-describedby="inp_last_name_help" placeholder="Enter Last name">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_artist_name" class="col-sm-2 col-form-label">Artist name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_artist_name" name="artist_name" dmx-bind:value="conn_getsinglerec.data.query.artist_name" aria-describedby="inp_artist_name_help" placeholder="Enter Artist name">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_ISRC" class="col-sm-2 col-form-label">Isrc</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_ISRC" name="ISRC" dmx-bind:value="conn_getsinglerec.data.query.ISRC" aria-describedby="inp_ISRC_help" placeholder="Enter Isrc">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_song1_name" class="col-sm-2 col-form-label">Song1 name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_song1_name" name="song1_name" dmx-bind:value="conn_getsinglerec.data.query.song1_name" aria-describedby="inp_song1_name_help" placeholder="Enter Song1 name">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_song2_name" class="col-sm-2 col-form-label">Song2 name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_song2_name" name="song2_name" dmx-bind:value="conn_getsinglerec.data.query.song2_name" aria-describedby="inp_song2_name_help" placeholder="Enter Song2 name">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_song3_name" class="col-sm-2 col-form-label">Song3 name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_song3_name" name="song3_name" dmx-bind:value="conn_getsinglerec.data.query.song3_name" aria-describedby="inp_song3_name_help" placeholder="Enter Song3 name">
+                </div>
+            </div>
+            <div class="row">
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_bio" class="col-sm-2 col-form-label">Bio</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_bio" name="bio" dmx-bind:value="conn_getsinglerec.data.query.bio" aria-describedby="inp_bio_help" placeholder="Enter Bio">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_featured_image" class="col-sm-2 col-form-label">Featured image</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_featured_image" name="featured_image" dmx-bind:value="conn_getsinglerec.data.query.featured_image" aria-describedby="inp_featured_image_help" placeholder="Enter Featured image">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_image2" class="col-sm-2 col-form-label">Image2</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_image2" name="image2" dmx-bind:value="conn_getsinglerec.data.query.image2" aria-describedby="inp_image2_help" placeholder="Enter Image2">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_image3" class="col-sm-2 col-form-label">Image3</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_image3" name="image3" dmx-bind:value="conn_getsinglerec.data.query.image3" aria-describedby="inp_image3_help" placeholder="Enter Image3">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_ticker" class="col-sm-2 col-form-label">Ticker</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_ticker" name="ticker" dmx-bind:value="conn_getsinglerec.data.query.ticker" aria-describedby="inp_ticker_help" placeholder="Enter Ticker">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <div class="col-sm-2">&nbsp;</div>
+                <div class="col-sm-10 text-end">
+                    <button type="submit" class="btn btn-primary" dmx-bind:value="conn_getsinglerec.data.query.Save" dmx-bind:disabled="state.executing">Save <span class="spinner-border spinner-border-sm" role="status" dmx-show="state.executing"></span></button>
+                </div>
+            </div>
+        </form>
+        </form>
+    </div>
+</div>
+<div class="offcanvas offcanvas-start w-75" id="offcanvas2" is="dmx-bs5-offcanvas" tabindex="-1" scroll="true">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Add new record</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <form is="dmx-serverconnect-form" id="serverconnectform2" method="post" action="/api/admin/add_record" dmx-generator="bootstrap5" dmx-form-type="horizontal">
+            <div class="form-group mb-3 row">
+                <label for="inp_first_name" class="col-sm-2 col-form-label">First name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_first_name" name="first_name" aria-describedby="inp_first_name_help" placeholder="Enter First name">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_last_name" class="col-sm-2 col-form-label">Last name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_last_name" name="last_name" aria-describedby="inp_last_name_help" placeholder="Enter Last name">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_artist_name" class="col-sm-2 col-form-label">Artist name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_artist_name" name="artist_name" aria-describedby="inp_artist_name_help" placeholder="Enter Artist name">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_ISRC" class="col-sm-2 col-form-label">Isrc</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_ISRC" name="ISRC" aria-describedby="inp_ISRC_help" placeholder="Enter Isrc">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_emailaddress" class="col-sm-2 col-form-label">Emailaddress</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_emailaddress" name="emailaddress" aria-describedby="inp_emailaddress_help" placeholder="Enter Emailaddress">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_song1_name" class="col-sm-2 col-form-label">Song1 name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_song1_name" name="song1_name" aria-describedby="inp_song1_name_help" placeholder="Enter Song1 name">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_song2_name" class="col-sm-2 col-form-label">Song2 name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_song2_name" name="song2_name" aria-describedby="inp_song2_name_help" placeholder="Enter Song2 name">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_song3_name" class="col-sm-2 col-form-label">Song3 name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_song3_name" name="song3_name" aria-describedby="inp_song3_name_help" placeholder="Enter Song3 name">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_Song1" class="col-sm-2 col-form-label">Songs: (max. 3)</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control" id="inp_Song1" name="Song1" aria-describedby="inp_Song1_help" multiple="true" is="dmx-dropzone" data-rule-maxfiles="3" accept=".mp3, .wav, .flac">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_featured_image" class="col-sm-2 col-form-label">Featured image</label>
+                <div class="col-sm-10">
+                    <input id="file_featured_image" name="file_featured_image[]" type="file" class="form-control" is="dmx-dropzone" accept=".jpeg, .jpg, .gif, .png" multiple="true">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <label for="inp_ticker" class="col-sm-2 col-form-label">Ticker</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inp_ticker" name="ticker" aria-describedby="inp_ticker_help" placeholder="Enter Ticker">
+                </div>
+            </div>
+            <div class="form-group mb-3 row">
+                <div class="col-sm-2">&nbsp;</div>
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary" dmx-bind:disabled="state.executing" dmx-on:click="serverconnectform2.submit()"><span class="spinner-border spinner-border-sm" role="status" dmx-show="state.executing"></span>Save </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div is="dmx-browser" id="browser1"></div>
+<dmx-notifications id="notifies1"></dmx-notifications>
+
+<div class="modal fade" id="modal_pic1" is="dmx-bs5-modal" tabindex="-1" dmx-on:keypress.esc="modal_pic1.hide()">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 fw-light">
+                <h6 class="modal-title visually-hidden">{{conn_getsinglerec.data.query.featured_image.replace('/public', ' '.replace('/images', '/images/resizedx768'))}}</h6>
+                <button id="btn3" class="btn visually-hidden" dmx-on:click="modal_pic1.hide();modal_showinfo.show()"><i class="fas fa-times-circle fa-lg"></i><br></button>
+            </div>
+            <div class="modal-body text-center">
+                <img dmx-bind:src="conn_getsinglerec.data.query.featured_image.replace('/public', ' '.replace('/images', '/images/resizedx768'))" width="600" class="img-fluid" dmx-on:click="modal_pic1.hide();modal_showinfo.show()">
+            </div>
+            <div class="modal-footer border-top-0">
+                <h6 dmx-text="text1.value.toNumber().formatNumber(2, '.', ',')" class="fw-lighter text-light-emphasis">Fancy display heading
+                </h6>
+                <h6 dmx-text="text2.value.toNumber().formatNumber(2, '.', ',')" class="fw-lighter text-light-emphasis">Fancy display heading
+                </h6>
+                <h6 dmx-text="text3.value.toNumber().formatNumber(2, '.', ',')" class="fw-lighter text-light-emphasis">Fancy display heading
+                </h6>
+                <input id="text1" name="text1" type="hidden" class="form-control visually-hidden" dmx-bind:value="modal_showinfo.video1.duration-modal_showinfo.video1.position">
+                <input id="text2" name="text2" type="hidden" class="form-control visually-hidden" dmx-bind:value="modal_showinfo.video2.duration-modal_showinfo.video2.position">
+                <input id="text3" name="text3" type="hidden" class="form-control visually-hidden" dmx-bind:value="modal_showinfo.video3.duration-modal_showinfo.video3.position">
+                <button class="btn btn-secondary visually-hidden" data-bs-dismiss="modal" dmx-on:click="modal_pic1.hide();modal_showinfo.show()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal_pic2" is="dmx-bs5-modal" tabindex="-1" dmx-on:keypress.esc="modal_pic1.hide()">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 fw-light">
+                <h6 class="modal-title visually-hidden">{{conn_getsinglerec.data.query.featured_image.replace('/public', ' '.replace('/images', '/images/resizedx768'))}}</h6>
+                <button id="btn4" class="btn visually-hidden" dmx-on:click="modal_pic1.hide();modal_showinfo.show()"><i class="fas fa-times-circle fa-lg"></i><br></button>
+            </div>
+            <div class="modal-body text-center">
+                <img dmx-bind:src="conn_getsinglerec.data.query.image2.replace('/public', ' '.replace('/images', '/images/resizedx768'))" width="600" class="img-fluid" dmx-on:click="modal_pic2.hide();modal_showinfo.show()">
+            </div>
+            <div class="modal-footer border-top-0">
+                <h6 dmx-text="text4.value.toNumber().formatNumber(2, '.', ',')" class="fw-lighter text-light-emphasis">Fancy display heading
+                </h6>
+                <h6 dmx-text="text5.value.toNumber().formatNumber(2, '.', ',')" class="fw-lighter text-light-emphasis">Fancy display heading
+                </h6>
+                <h6 dmx-text="text6.value.toNumber().formatNumber(2, '.', ',')" class="fw-lighter text-light-emphasis">Fancy display heading
+                </h6>
+                <input id="text4" name="text4" type="hidden" class="form-control visually-hidden" dmx-bind:value="modal_showinfo.video1.duration-modal_showinfo.video1.position">
+                <input id="text5" name="text5" type="hidden" class="form-control visually-hidden" dmx-bind:value="modal_showinfo.video2.duration-modal_showinfo.video2.position">
+                <input id="text6" name="text6" type="hidden" class="form-control visually-hidden" dmx-bind:value="modal_showinfo.video3.duration-modal_showinfo.video3.position">
+                <button class="btn btn-secondary visually-hidden" data-bs-dismiss="modal" dmx-on:click="modal_pic1.hide();modal_showinfo.show()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal_pic3" is="dmx-bs5-modal" tabindex="-1" dmx-on:keypress.esc="modal_pic1.hide()">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 fw-light">
+                <h6 class="modal-title visually-hidden">{{conn_getsinglerec.data.query.featured_image.replace('/public', ' '.replace('/images', '/images/resizedx768'))}}</h6>
+                <button id="btn5" class="btn visually-hidden" dmx-on:click="modal_pic1.hide();modal_showinfo.show()"><i class="fas fa-times-circle fa-lg"></i><br></button>
+            </div>
+            <div class="modal-body text-center">
+                <img dmx-bind:src="conn_getsinglerec.data.query.image3.replace('/public', ' '.replace('/images', '/images/resizedx768'))" width="600" class="img-fluid" dmx-on:click="modal_pic3.hide();modal_showinfo.show()">
+            </div>
+            <div class="modal-footer border-top-0">
+                <h6 dmx-text="text7.value.toNumber().formatNumber(2, '.', ',')" class="fw-lighter text-light-emphasis">Fancy display heading
+                </h6>
+                <h6 dmx-text="text8.value.toNumber().formatNumber(2, '.', ',')" class="fw-lighter text-light-emphasis">Fancy display heading
+                </h6>
+                <h6 dmx-text="text9.value.toNumber().formatNumber(2, '.', ',')" class="fw-lighter text-light-emphasis">Fancy display heading
+                </h6>
+                <input id="text7" name="text7" type="hidden" class="form-control visually-hidden" dmx-bind:value="modal_showinfo.video1.duration-modal_showinfo.video1.position">
+                <input id="text8" name="text8" type="hidden" class="form-control visually-hidden" dmx-bind:value="modal_showinfo.video2.duration-modal_showinfo.video2.position">
+                <input id="text9" name="text9" type="hidden" class="form-control visually-hidden" dmx-bind:value="modal_showinfo.video3.duration-modal_showinfo.video3.position">
+                <button class="btn btn-secondary visually-hidden" data-bs-dismiss="modal" dmx-on:click="modal_pic1.hide();modal_showinfo.show()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal text-light" id="modal_showinfo" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 bg-dark text-light">
+                <h6 class="modal-title">{{conn_getsinglerec.data.query.first_name+' '+conn_getsinglerec.data.query.last_name+', Artistname: '+conn_getsinglerec.data.query.artist_name}}</h6>
+
+                <button id="btn2" class="btn text-light bg-dark" dmx-on:click="modal_showinfo.hide()"><i class="fas fa-times-circle fa-lg"></i><br></button>
+            </div>
+            <hr>
+            <div class="modal-body text-light bg-dark text-center">
+                <div class="dropdown">
+                    <button id="dropdown1" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More info&nbsp;</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdown1">
+                        <a class="dropdown-item" href="#">{{'Applied: '+conn_getsinglerec.data.query.consent_date.formatDate('dd-MM-yyyy')}}</a>
+                        <a class="dropdown-item" href="#">{{'Verified: '+conn_getsinglerec.data.query.verification_date.formatDate('dd-MM-yyyy')}}</a>
+                        <a class="dropdown-item" href="#">{{'ISRC-code: '+conn_getsinglerec.data.query.ISRC}}</a>
+                        <a class="dropdown-item" href="#">{{'Email: '+conn_getsinglerec.data.query.emailaddress}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body text-light bg-dark">
+                <p>Bio says the following:<br><br>{{conn_getsinglerec.data.query.bio}}</p>
+                <hr>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <img dmx-bind:src="conn_getsinglerec.data.query.featured_image.replace('/public', ' ')" class="img-fluid img-thumbnail" dmx-on:click="modal_showinfo.toggle();modal_pic1.show()" id="picture1">
+                        </div>
+                        <div class="col-4">
+                            <img dmx-bind:src="conn_getsinglerec.data.query.image2.replace('/public', ' ')" class="img-fluid img-thumbnail" dmx-on:click="modal_showinfo.toggle();modal_pic2.show()" id="picture2">
+                        </div>
+                        <div class="col-4">
+                            <img dmx-bind:src="conn_getsinglerec.data.query.image3.replace('/public', ' ')" class="img-fluid img-thumbnail" dmx-on:click="modal_showinfo.toggle();modal_pic3.show()" id="picture3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            <div class="modal-body bg-dark text-light">
+                <div class="container">
+                    <h6>Song number 1: {{conn_getsinglerec.data.query.song1_name}}<br>Name upload: {{conn_getsinglerec.data.query.upload1_name}}</h6>
+                    <div class="d-block">
+                        <video is="dmx-video" id="video1" controls="true" width="300" height="55" dmx-bind:src="conn_getsinglerec.data.query.upload1_url.replace('/public', ' ')" preload="auto" style="/* color: #000 */"></video>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body text-light bg-dark">
+                <div class="container">
+                    <h6 dmx-hide="(conn_getsinglerec.data.query.upload2_name.length() &lt; 1)">Song number 2: {{conn_getsinglerec.data.query.song2_name}}<br>Name upload: {{conn_getsinglerec.data.query.upload2_name}}</h6>
+                    <div class="d-block">
+                        <video is="dmx-video" id="video2" controls="true" width="300" height="55" dmx-bind:src="conn_getsinglerec.data.query.upload2_url.replace('/public', ' ')" dmx-hide="(conn_getsinglerec.data.query.upload2_name.length() &lt; 1)" preload="auto"></video>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body bg-dark text-light">
+                <div class="container">
+                    <h6 dmx-hide="(conn_getsinglerec.data.query.upload3_name.length() &lt; 1)">Song number 3: {{conn_getsinglerec.data.query.song3_name}}<br>Name upload: {{conn_getsinglerec.data.query.upload3_name}}</h6>
+                    <div class="d-block">
+                        <video is="dmx-video" id="video3" controls="true" width="300" height="55" dmx-bind:src="conn_getsinglerec.data.query.upload3_url.replace('/public', ' ')" dmx-hide="(conn_getsinglerec.data.query.upload3_name.length() &lt; 1)" preload="auto"></video>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-top-0 text-light bg-dark">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container text-light bg-dark">
+    <div class="row">
+        <div class="col">
+            <button id="btn8" class="btn" dmx-on:click="offcanvas2.show()">Add New Record</button>
+        </div>
+    </div>
+    <div class="row text-light bg-dark">
+        <div class="mt-5 col-9 bg-dark text-light">
+            <table class="table table-borderless table-sm text-light bg-dark">
+                <thead>
+                    <tr>
+                        <th scope="row"></th>
+                        <th scope="row"></th>
+                        <th class="visually-hidden">Consent</th>
+                        <th class="fw-light text-info">First name</th>
+                        <th class="fw-light text-info">Last name</th>
+                        <th class="fw-light text-info">Featured image</th>
+                        <th class="fw-light text-info">Artist name</th>
+                        <th class="fw-light text-info">ISRC</th>
+
+                    </tr>
+                </thead>
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="conn_getrecords.data.query" id="tableRepeat2">
+                    <tr class="text-light">
+                        <td><button id="btn6" class="btn" dmx-on:click="conn_getsinglerec.load({consent_id: consent_id});offcanvas1.show()"><i class="far fa-edit fa-2x"></i></button></td>
+                        <td><button id="btn1" class="btn text-primary" dmx-on:click="conn_getsinglerec.load({consent_id: consent_id});modal_showinfo.show()"><i class="fas fa-binoculars fa-2x"></i></button></td>
+                        <td dmx-text="consent_id" class="visually-hidden text-light"></td>
+                        <td dmx-text="first_name" class="text-light"></td>
+                        <td dmx-text="last_name" class="text-light"></td>
+                        <td>
+                            <img class="img-thumbnail img-fluid" dmx-bind:src="featured_image.replace('/public', ' ')" width="150" height="150">
+                        </td>
+                        <td dmx-text="artist_name" class="text-light"></td>
+                        <td dmx-text="ISRC" class="text-light"></td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<meta name="ac:route" content="/ucr/adminucr">

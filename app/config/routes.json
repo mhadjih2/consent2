@@ -1,0 +1,39 @@
+{
+  "routes": [
+    {
+      "path": "/unsubscribe",
+      "name": "unsubscribe",
+      "page": "unsubscribe",
+      "layout": "main"
+    },
+    {
+      "path": "/",
+      "page": "index",
+      "routeType": "page",
+      "layout": "main"
+    },
+    {
+      "path": "/ucr/adminucr",
+      "page": "ucr/adminucr",
+      "layout": "admin"
+    },
+    {
+      "path": "/login",
+      "page": "login",
+      "layout": "main"
+    },
+    {
+      "path": "/confirm",
+      "page": "confirm",
+      "layout": "main"
+    }
+  ],
+  "layouts": {
+    "admin": {
+      "exec": "/api/admin/isadmin"
+    },
+    "main": {
+      "exec": ""
+    }
+  }
+}

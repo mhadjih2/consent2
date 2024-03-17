@@ -1,0 +1,12 @@
+{
+  "name": "mail",
+  "module": "mail",
+  "action": "setup",
+  "options": {
+    "host": "mail.livegiggy.com",
+    "username": "ucr@livegiggy.com",
+    "password": "Livemuziekkie1234!",
+    "port": 465,
+    "useSSL": true
+  }
+}

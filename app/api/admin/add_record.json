@@ -1,0 +1,795 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/views/ucr/adminucr.ejs",
+      "linkedForm": "serverconnectform2"
+    },
+    "$_POST": [
+      {
+        "type": "text",
+        "fieldName": "first_name",
+        "name": "first_name"
+      },
+      {
+        "type": "text",
+        "fieldName": "last_name",
+        "name": "last_name"
+      },
+      {
+        "type": "text",
+        "fieldName": "artist_name",
+        "name": "artist_name"
+      },
+      {
+        "type": "text",
+        "fieldName": "ISRC",
+        "name": "ISRC"
+      },
+      {
+        "type": "text",
+        "fieldName": "emailaddress",
+        "name": "emailaddress"
+      },
+      {
+        "type": "text",
+        "fieldName": "song1_name",
+        "name": "song1_name"
+      },
+      {
+        "type": "text",
+        "fieldName": "song2_name",
+        "name": "song2_name"
+      },
+      {
+        "type": "text",
+        "fieldName": "song3_name",
+        "name": "song3_name"
+      },
+      {
+        "type": "file",
+        "fieldName": "Song1",
+        "multiple": true,
+        "options": {
+          "rules": {}
+        },
+        "name": "Song1",
+        "sub": [
+          {
+            "type": "text",
+            "name": "name"
+          },
+          {
+            "type": "text",
+            "name": "type"
+          },
+          {
+            "type": "number",
+            "name": "size"
+          },
+          {
+            "type": "text",
+            "name": "error"
+          }
+        ],
+        "outputType": "array"
+      },
+      {
+        "type": "text",
+        "fieldName": "bio",
+        "name": "bio"
+      },
+      {
+        "type": "file",
+        "fieldName": "file_featured_image[]",
+        "multiple": true,
+        "options": {
+          "rules": {}
+        },
+        "name": "file_featured_image",
+        "sub": [
+          {
+            "type": "text",
+            "name": "name"
+          },
+          {
+            "type": "text",
+            "name": "type"
+          },
+          {
+            "type": "number",
+            "name": "size"
+          },
+          {
+            "type": "text",
+            "name": "error"
+          }
+        ],
+        "outputType": "array"
+      },
+      {
+        "type": "text",
+        "fieldName": "ticker",
+        "name": "ticker"
+      },
+      {
+        "type": "array",
+        "name": "record",
+        "sub": [
+          {
+            "type": "text",
+            "name": "upload[0]"
+          },
+          {
+            "type": "text",
+            "name": "upload[1]"
+          },
+          {
+            "type": "text",
+            "name": "upload[2]"
+          },
+          {
+            "type": "text",
+            "name": "upload0_url"
+          },
+          {
+            "type": "text",
+            "name": "upload1_url"
+          },
+          {
+            "type": "text",
+            "name": "upload2_url"
+          },
+          {
+            "type": "number",
+            "name": "consent_id"
+          },
+          {
+            "type": "number",
+            "name": "insert"
+          },
+          {
+            "type": "text",
+            "name": "upload1_path"
+          },
+          {
+            "type": "text",
+            "name": "upload2_path"
+          },
+          {
+            "type": "text",
+            "name": "upload1[0]"
+          },
+          {
+            "type": "text",
+            "name": "upload1[1]"
+          },
+          {
+            "type": "text",
+            "name": "upload1[2]"
+          }
+        ]
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "",
+        "module": "auth",
+        "action": "restrict",
+        "options": {
+          "provider": "security",
+          "permissions": [
+            "admin"
+          ],
+          "loginUrl": "/login",
+          "forbiddenUrl": "/login"
+        }
+      },
+      {
+        "name": "insert",
+        "module": "dbupdater",
+        "action": "insert",
+        "options": {
+          "connection": "db",
+          "sql": {
+            "type": "insert",
+            "values": [
+              {
+                "table": "consent",
+                "column": "first_name",
+                "type": "text",
+                "value": "{{$_POST.first_name}}"
+              },
+              {
+                "table": "consent",
+                "column": "last_name",
+                "type": "text",
+                "value": "{{$_POST.last_name}}"
+              },
+              {
+                "table": "consent",
+                "column": "artist_name",
+                "type": "text",
+                "value": "{{$_POST.artist_name}}"
+              },
+              {
+                "table": "consent",
+                "column": "ISRC",
+                "type": "text",
+                "value": "{{$_POST.ISRC}}"
+              },
+              {
+                "table": "consent",
+                "column": "emailaddress",
+                "type": "text",
+                "value": "{{$_POST.emailaddress}}"
+              },
+              {
+                "table": "consent",
+                "column": "ticker",
+                "type": "text",
+                "value": "{{$_POST.ticker}}"
+              },
+              {
+                "table": "consent",
+                "column": "manually_added",
+                "type": "boolean",
+                "value": "1"
+              },
+              {
+                "table": "consent",
+                "column": "song1_name",
+                "type": "text",
+                "value": "{{$_POST.song1_name}}"
+              },
+              {
+                "table": "consent",
+                "column": "song2_name",
+                "type": "text",
+                "value": "{{$_POST.song2_name}}"
+              },
+              {
+                "table": "consent",
+                "column": "song3_name",
+                "type": "text",
+                "value": "{{$_POST.song3_name}}"
+              }
+            ],
+            "table": "consent",
+            "returning": "consent_id",
+            "query": "insert into `consent` (`ISRC`, `artist_name`, `emailaddress`, `first_name`, `last_name`, `manually_added`, `song1_name`, `song2_name`, `song3_name`, `ticker`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) returning `consent_id`",
+            "params": [
+              {
+                "name": ":P1",
+                "type": "expression",
+                "value": "{{$_POST.first_name}}",
+                "test": ""
+              },
+              {
+                "name": ":P2",
+                "type": "expression",
+                "value": "{{$_POST.last_name}}",
+                "test": ""
+              },
+              {
+                "name": ":P3",
+                "type": "expression",
+                "value": "{{$_POST.artist_name}}",
+                "test": ""
+              },
+              {
+                "name": ":P4",
+                "type": "expression",
+                "value": "{{$_POST.ISRC}}",
+                "test": ""
+              },
+              {
+                "name": ":P5",
+                "type": "expression",
+                "value": "{{$_POST.emailaddress}}",
+                "test": ""
+              },
+              {
+                "name": ":P6",
+                "type": "expression",
+                "value": "{{$_POST.ticker}}",
+                "test": ""
+              },
+              {
+                "name": ":P7",
+                "type": "expression",
+                "value": "{{$_POST.song1_name}}",
+                "test": ""
+              },
+              {
+                "name": ":P8",
+                "type": "expression",
+                "value": "{{$_POST.song2_name}}",
+                "test": ""
+              },
+              {
+                "name": ":P9",
+                "type": "expression",
+                "value": "{{$_POST.song3_name}}",
+                "test": ""
+              }
+            ]
+          }
+        },
+        "meta": [
+          {
+            "name": "identity",
+            "type": "text"
+          },
+          {
+            "name": "affected",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "name": "upload",
+        "module": "upload",
+        "action": "upload",
+        "options": {
+          "fields": "{{$_POST.Song1}}",
+          "path": "/public/uploads/songs",
+          "replaceSpace": true,
+          "asciiOnly": true,
+          "overwrite": true,
+          "replaceDiacritics": true
+        },
+        "meta": [
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "path",
+            "type": "text"
+          },
+          {
+            "name": "url",
+            "type": "text"
+          },
+          {
+            "name": "type",
+            "type": "text"
+          },
+          {
+            "name": "size",
+            "type": "text"
+          },
+          {
+            "name": "error",
+            "type": "number"
+          }
+        ],
+        "outputType": "array"
+      },
+      {
+        "name": "repeat",
+        "module": "core",
+        "action": "repeat",
+        "options": {
+          "repeat": "{{upload}}",
+          "outputFields": [],
+          "exec": {
+            "steps": {
+              "name": "update3",
+              "module": "dbupdater",
+              "action": "update",
+              "options": {
+                "connection": "db",
+                "sql": {
+                  "type": "update",
+                  "values": [
+                    {
+                      "table": "consent",
+                      "column": "upload1_name",
+                      "type": "text",
+                      "value": "{{upload[0].name}}"
+                    },
+                    {
+                      "table": "consent",
+                      "column": "upload2_name",
+                      "type": "text",
+                      "value": "{{upload[1].name}}"
+                    },
+                    {
+                      "table": "consent",
+                      "column": "upload3_name",
+                      "type": "text",
+                      "value": "{{upload[2].name}}"
+                    },
+                    {
+                      "table": "consent",
+                      "column": "upload1_url",
+                      "type": "text",
+                      "value": "{{upload[0].path}}"
+                    },
+                    {
+                      "table": "consent",
+                      "column": "upload2_url",
+                      "type": "text",
+                      "value": "{{upload[1].path}}"
+                    },
+                    {
+                      "table": "consent",
+                      "column": "upload3_url",
+                      "type": "text",
+                      "value": "{{upload[2].path}}"
+                    }
+                  ],
+                  "table": "consent",
+                  "wheres": {
+                    "condition": "AND",
+                    "rules": [
+                      {
+                        "id": "consent_id",
+                        "field": "consent_id",
+                        "type": "double",
+                        "operator": "equal",
+                        "value": "{{insert.identity}}",
+                        "data": {
+                          "column": "consent_id"
+                        },
+                        "operation": "="
+                      }
+                    ],
+                    "conditional": null,
+                    "valid": true
+                  },
+                  "returning": "consent_id",
+                  "query": "update `consent` set `upload1_name` = ?, `upload2_name` = ?, `upload3_name` = ?, `upload1_url` = ?, `upload2_url` = ?, `upload3_url` = ? where `consent_id` = ? returning `consent_id`",
+                  "params": [
+                    {
+                      "name": ":P1",
+                      "type": "expression",
+                      "value": "{{upload[0].name}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P2",
+                      "type": "expression",
+                      "value": "{{upload[1].name}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P3",
+                      "type": "expression",
+                      "value": "{{upload[2].name}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P4",
+                      "type": "expression",
+                      "value": "{{upload[0].path}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P5",
+                      "type": "expression",
+                      "value": "{{upload[1].path}}",
+                      "test": ""
+                    },
+                    {
+                      "name": ":P6",
+                      "type": "expression",
+                      "value": "{{upload[2].path}}",
+                      "test": ""
+                    },
+                    {
+                      "operator": "equal",
+                      "type": "expression",
+                      "name": ":P7",
+                      "value": "{{insert.identity}}",
+                      "test": ""
+                    }
+                  ]
+                }
+              },
+              "meta": [
+                {
+                  "name": "affected",
+                  "type": "number"
+                }
+              ]
+            }
+          }
+        },
+        "output": true,
+        "meta": [
+          {
+            "name": "$index",
+            "type": "number"
+          },
+          {
+            "name": "$number",
+            "type": "number"
+          },
+          {
+            "name": "$name",
+            "type": "text"
+          },
+          {
+            "name": "$value",
+            "type": "object"
+          },
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "path",
+            "type": "text"
+          },
+          {
+            "name": "url",
+            "type": "text"
+          },
+          {
+            "name": "type",
+            "type": "text"
+          },
+          {
+            "name": "size",
+            "type": "text"
+          },
+          {
+            "name": "error",
+            "type": "number"
+          }
+        ],
+        "outputType": "array"
+      },
+      {
+        "name": "upload1",
+        "module": "upload",
+        "action": "upload",
+        "options": {
+          "fields": "{{$_POST.file_featured_image}}",
+          "path": "/public/uploads/images",
+          "overwrite": true,
+          "asciiOnly": true,
+          "replaceDiacritics": true,
+          "replaceSpace": true
+        },
+        "meta": [
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "path",
+            "type": "text"
+          },
+          {
+            "name": "url",
+            "type": "text"
+          },
+          {
+            "name": "type",
+            "type": "text"
+          },
+          {
+            "name": "size",
+            "type": "text"
+          },
+          {
+            "name": "error",
+            "type": "number"
+          }
+        ],
+        "outputType": "array"
+      },
+      {
+        "name": "repeat2",
+        "module": "core",
+        "action": "repeat",
+        "options": {
+          "repeat": "{{upload1}}",
+          "outputFields": [],
+          "exec": {
+            "steps": [
+              {
+                "name": "image",
+                "module": "image",
+                "action": "load",
+                "options": {
+                  "path": "{{path}}",
+                  "autoOrient": true
+                },
+                "outputType": "object",
+                "meta": [
+                  {
+                    "name": "width",
+                    "type": "number"
+                  },
+                  {
+                    "name": "height",
+                    "type": "number"
+                  }
+                ]
+              },
+              {
+                "name": "",
+                "module": "image",
+                "action": "resize",
+                "options": {
+                  "instance": "image",
+                  "width": 768,
+                  "upscale": true
+                }
+              },
+              {
+                "name": "newImage",
+                "module": "image",
+                "action": "save",
+                "options": {
+                  "instance": "image",
+                  "format": "auto",
+                  "path": "/public/uploads/images/resizedx768",
+                  "overwrite": true
+                }
+              },
+              {
+                "name": "",
+                "module": "image",
+                "action": "cover",
+                "options": {
+                  "instance": "image",
+                  "width": 400,
+                  "height": 400
+                }
+              },
+              {
+                "name": "newImage1",
+                "module": "image",
+                "action": "save",
+                "options": {
+                  "instance": "image",
+                  "format": "auto",
+                  "path": "/public/uploads/images/coverfit",
+                  "overwrite": true
+                }
+              },
+              {
+                "name": "update1",
+                "module": "dbupdater",
+                "action": "update",
+                "options": {
+                  "connection": "db",
+                  "sql": {
+                    "type": "update",
+                    "values": [
+                      {
+                        "table": "consent",
+                        "column": "featured_image",
+                        "type": "text",
+                        "value": "{{upload1[0].path}}"
+                      },
+                      {
+                        "table": "consent",
+                        "column": "image2",
+                        "type": "text",
+                        "value": "{{upload1[1].path}}"
+                      },
+                      {
+                        "table": "consent",
+                        "column": "image3",
+                        "type": "text",
+                        "value": "{{upload1[2].path}}"
+                      }
+                    ],
+                    "table": "consent",
+                    "wheres": {
+                      "condition": "AND",
+                      "rules": [
+                        {
+                          "id": "consent_id",
+                          "field": "consent_id",
+                          "type": "double",
+                          "operator": "equal",
+                          "value": "{{insert.identity}}",
+                          "data": {
+                            "column": "consent_id"
+                          },
+                          "operation": "="
+                        }
+                      ],
+                      "conditional": null,
+                      "valid": true
+                    },
+                    "returning": "consent_id",
+                    "query": "update `consent` set `featured_image` = ?, `image2` = ?, `image3` = ? where `consent_id` = ? returning `consent_id`",
+                    "params": [
+                      {
+                        "name": ":P1",
+                        "type": "expression",
+                        "value": "{{upload1[0].path}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P2",
+                        "type": "expression",
+                        "value": "{{upload1[1].path}}",
+                        "test": ""
+                      },
+                      {
+                        "name": ":P3",
+                        "type": "expression",
+                        "value": "{{upload1[2].path}}",
+                        "test": ""
+                      },
+                      {
+                        "operator": "equal",
+                        "type": "expression",
+                        "name": ":P4",
+                        "value": "{{insert.identity}}",
+                        "test": ""
+                      }
+                    ]
+                  }
+                },
+                "meta": [
+                  {
+                    "name": "affected",
+                    "type": "number"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "meta": [
+          {
+            "name": "$index",
+            "type": "number"
+          },
+          {
+            "name": "$number",
+            "type": "number"
+          },
+          {
+            "name": "$name",
+            "type": "text"
+          },
+          {
+            "name": "$value",
+            "type": "object"
+          },
+          {
+            "name": "name",
+            "type": "text"
+          },
+          {
+            "name": "path",
+            "type": "text"
+          },
+          {
+            "name": "url",
+            "type": "text"
+          },
+          {
+            "name": "type",
+            "type": "text"
+          },
+          {
+            "name": "size",
+            "type": "text"
+          },
+          {
+            "name": "error",
+            "type": "number"
+          }
+        ],
+        "outputType": "array"
+      }
+    ]
+  },
+  "usedModules": {
+    "sharp": "^0.29.3"
+  }
+}

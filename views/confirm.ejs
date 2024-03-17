@@ -1,0 +1,43 @@
+<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="confirm" appConnect="local" components="{dmxBootstrap5Modal:{},dmxBrowser:{},dmxNotifications:{},dmxBackgroundVideo:{}}" -->
+<dmx-notifications id="notifies1"></dmx-notifications>
+<div is="dmx-browser" id="browser1"></div>
+<div class="modal fade text-warning bg-transparent text-center" id="modal1" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title">Yes!!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" dmx-on:click="browser1.goto('https://www.livegiggy.com')"></button>
+            </div>
+            <div class="modal-body">
+                <p>All is set! We'll go and listen to your song(s)!</p>
+                <div class="row">
+                    <div class="col"><img width="200" loading="lazy" class="img-fluid" src="/assets/images/avatars/singer.png"></div>
+                </div>
+            </div>
+
+            <div class="modal-footer border-top-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="browser1.goto('https://www.livegiggy.com')">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<dmx-serverconnect id="serverconnect1" url="/api/useradd/checkid" dmx-on:success=""></dmx-serverconnect>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form id="form1" is="dmx-serverconnect-form" method="post" autosubmit="true" action="/api/useradd/checkid" dmx-on:success="form1.reset();modal1.show()" dmx-on:forbidden="form1.reset();browser1.alert('Something went wrong there!')">
+                <input id="id" name="id" type="hidden" class="form-control" dmx-bind:value="query.id" readonly="true">
+                <input id="email" name="email" type="hidden" class="form-control" dmx-bind:value="query.email" readonly="true">
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col text-center" is="dmx-background-video" id="bgvideo2">
+            <div is="dmx-background-video" id="bgvideo1" src="/uploads/videos/musicians_onstage.mp4"></div>
+            <img src="/assets/images/radio.jpeg" width="300" loading="lazy" class="img-fluid">
+        </div>
+    </div>
+</div>
+<meta name="ac:route" content="/confirm">

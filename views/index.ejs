@@ -1,0 +1,122 @@
+<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="index" appConnect="local" components="{dmxDropzone:{},dmxMediumEditor:{},dmxValidator:{},dmxNotifications:{},dmxBackgroundVideo:{}}" -->
+<dmx-notifications id="notifies1"></dmx-notifications>
+<dmx-serverconnect id="conn_useradd" url="/api/useradd/add" noload="true"></dmx-serverconnect>
+<div class="container ms-xl-5 opacity-75" is="dmx-background-video" id="bgvideo1" src="/uploads/videos/production_mic_CR.mp4">
+
+    <div class="row row-cols-xl-12 row-cols-12">
+        <div class="text-light bg-dark col ms-3 me-3 ps-5 pe-5">
+            <div class="row row-cols-12 mt-5">
+                <div class="col-xl bg-dark col-12">
+                    <h5 class="text-light bg-dark ms-lg-3 text-center">Consent- and upload-form, necessary for your <br>song(s) to be played on UnCommon Radio:<br></h5>
+                    <h6 class="ms-lg-3 text-white-50 bg-dark text-center">(Don't worry, it looks like a lot, but most of it is optional...;-)</h6>
+                </div>
+            </div>
+            <form id="form1" is="dmx-serverconnect-form" method="post" action="/api/useradd/add" dmx-on:invalid="notifies1.warning('Email already exists...;-)')" dmx-on:success="form1.reset(true);btn1.disable();notifies1.success('Success!');browser1.alert('An email with a verification link has been sent to your emailaddress. Please make sure to also check your spambox when it seems you didn\'t receive it. Thanks!')">
+                <div class="form-group mb-3 row">
+                    <label for="inp_first_name" class="col-sm-2 col-form-label mt-lg-4">*First name</label>
+                    <div class="col-sm-10 col-12">
+                        <input type="text" class="form-control mt-lg-4" id="inp_first_name" name="first_name" aria-describedby="inp_first_name_help" placeholder="Enter your first name please..." data-rule-nowhitespace="" required="" maxlength="10">
+                    </div>
+                </div>
+                <div class="form-group mb-3 row">
+                    <label for="inp_last_name" class="col-sm-2 col-form-label">*Last name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inp_last_name" name="last_name" aria-describedby="inp_last_name_help" placeholder="Your last name?" required="" maxlength="20" minlength="2">
+                    </div>
+                </div>
+                <div class="form-group mb-3 row">
+                    <label for="inp_artist_name" class="col-sm-2 col-form-label">Artist name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inp_artist_name" name="artist_name" aria-describedby="inp_artist_name_help" placeholder="What is your Artist name, if you have one? (optional)" maxlength="20" minlength="2">
+                    </div>
+                </div>
+                <div class="form-group mb-3 row">
+                    <label for="inp_ISRC" class="col-sm-2 col-form-label">ISRC-code</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inp_ISRC" name="ISRC" aria-describedby="inp_ISRC_help" placeholder="If you have an ISRC-code, it goes here. (optional)" data-rule-nowhitespace="" data-rule-alphanumeric="">
+                    </div>
+                </div>
+                <div class="form-group mb-3 row">
+                    <label for="inp_emailaddress" class="col-sm-2 col-form-label mt-0">*Email</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inp_emailaddress" name="emailaddress" aria-describedby="inp_emailaddress_help" placeholder="Enter your Emailaddress" required="" data-rule-email="">
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group mb-3 row">
+                    <label for="inp_song1_name" class="col-sm-2 col-form-label mt-lg-3">*Song1 name:</label>
+                    <div class="col-sm-10 mt-sm-3 mt-lg-4">
+                        <input type="text" class="form-control" id="inp_song1_name" name="song1_name" aria-describedby="inp_song1_name_help" placeholder="What is your first song's name? " required="" maxlength="20">
+                    </div>
+                </div>
+                <div class="form-group mb-3 row">
+                    <label for="inp_song2_name" class="col-sm-2 col-form-label mt-lg-2">Song2 name:</label>
+                    <div class="col-sm-10 mt-lg-3 mt-sm-3">
+                        <input type="text" class="form-control" id="inp_song2_name" name="song2_name" aria-describedby="inp_song2_name_help" placeholder="Potentially a second one? (optional)" maxlength="20">
+
+                    </div>
+                </div>
+                <div class="form-group mb-3 row">
+                    <label for="inp_song3_name" class="col-sm-2 col-form-label mt-lg-2">Song3 name:</label>
+                    <div class="col-sm-10">
+
+                        <input type="text" class="form-control mt-sm-3" id="inp_song3_name" name="song3_name" aria-describedby="inp_song3_name_help" placeholder="Maybe a third? (optional)" maxlength="20">
+
+                        <hr>
+                        <div class="row mb-lg-5">
+                            <div class="text-light mt-lg-5 col-lg-4">
+                                <h5 class="mt-lg-4 mt-3">*Choose your files for upload here:</h5>
+                                <h6>(If you want to send more songs, it's up to you...;-)</h6>
+                                <h6 class="mt-3 mb-3">Please choose a good audio-format with a high bitrate so it sounds good on the radio.</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3 row">
+                    <label for="input2" class="col-sm-2 col-form-label pt-lg-0">Your songs for upload. (1 song at least, max. 3):</label>
+                    <div class="col-sm-10">
+                        <h6 class="fw-light">Sound file(s) upload (.wav / .mp3 / .flac &amp; max 3 files)</h6>
+                        <input id="song_upload1" name="song_upload1[]" type="file" class="form-control" is="dmx-dropzone" multiple="true" required="" data-rule-maxfiles="3" data-rule-minfiles="1" data-rule-maxtotalsize="200000000" accept=".wav, .mp3, .flac">
+                    </div>
+                </div>
+
+                <div class="form-group mb-3 row">
+                    <label for="input_song1" class="col-sm-2 col-form-label">Upload some images to be shown while the music plays.(optional)</label>
+                    <div class="col-sm-10">
+                        <div class="form-group mb-3">
+                            <label for="input_image" class="form-label pt-2">Image upload(s) (.jpg / .jpeg / .png &amp; max 3 files)</label>
+                            <input id="upload_image" name="upload_image[]" type="file" class="form-control" is="dmx-dropzone" thumb-width="150" thumb-height="150" multiple="true" data-rule-maxfiles="3" accept=".jpg, .jpeg, .png" data-rule-maxtotalsize="12000000">
+                            <small id="input3_help" class="form-text text-muted">Select your image(s) here for upload</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-3 row">
+                    <label for="input_song1" class="col-sm-2 col-form-label">*Tell us something about you?</label>
+                    <div class="col-sm-10 mt-4 mt-lg-2 mb-lg-2 pb-lg-0 col-lg-10">
+                        <div class="row">
+                            <div class="col-lg-12 fw-light col-md-12">
+                                <textarea id="text2" class="form-control" name="bio" dmx-bind:placeholder="'And lastly, tell us a bit about you...?                                                            '" required="" maxlength="1500"></textarea>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-lg-end text-xl-center offset-xl-2">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input mt-xl-2 ms-xl-4" type="checkbox" value="1" id="input1" name="input1" required="">
+                            <label class="form-check-label offset-lg-0 mb-2 col-form-label-sm col-xl-9 ps-xl-0 pe-xl-5" for="input1">I've read the <a href="#" dmx-on:click="modalterms.show()">terms and conditions</a>&nbsp;applicable to having my song(s) played on UCR, and I agree.</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-lg-end rounded-bottom rounded-3 mb-5"><button id="btn1" class="btn btn-primary" type="submit" dmx-bind:disabled="state.executing"><span class="spinner-border spinner-border-sm" role="status" dmx-show="state.executing"></span>Play my songs!</button></div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+<meta name="ac:route" content="/">

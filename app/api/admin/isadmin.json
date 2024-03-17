@@ -1,0 +1,25 @@
+[
+  {
+    "name": "identity",
+    "module": "auth",
+    "action": "identify",
+    "options": {
+      "provider": "security"
+    },
+    "output": true,
+    "meta": []
+  },
+  {
+    "name": "",
+    "module": "auth",
+    "action": "restrict",
+    "options": {
+      "provider": "security",
+      "permissions": [
+        "admin"
+      ],
+      "loginUrl": "/login",
+      "forbiddenUrl": "/login"
+    }
+  }
+]

@@ -1,0 +1,33 @@
+<!-- Wappler include head-page="layouts/main" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="login" appConnect="local" components="{dmxBrowser:{}}" -->
+<dmx-serverconnect id="conn_login" url="/api/admin/login" noload="true"></dmx-serverconnect>
+<div is="dmx-browser" id="browser1"></div>
+<meta name="ac:route" content="/login">
+<div class="container text-light bg-dark">
+    <form id="login1" is="dmx-serverconnect-form" method="post" action="/api/admin/login" dmx-on:success="login1.reset();browser1.goto('/ucr/adminucr')">
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-7 col-xl-5 text-start">
+                <div class="row">
+                    <div class="col">
+                        <h1>Log In</h1>
+                        <p class="text-h3">Enter your details below.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mt-4">
+                        <input type="text" id="inp_username" name="username" class="form-control" placeholder="Username">
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col">
+                        <input type="password" id="inp_password" name="password" class="form-control" placeholder="Password">
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col">
+                        <button id="login1_submit" class="btn btn-primary" type="submit">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,13 @@
+{
+  "login.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "confirm.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "unsubscribe.ejs": {
+    "layoutPage": "main"
+  }
+}

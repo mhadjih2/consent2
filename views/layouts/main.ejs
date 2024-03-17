@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+
+<head>
+  <base href="/">
+  <script src="/dmxAppConnect/dmxAppConnect.js"></script>
+  <meta charset="UTF-8">
+  <title>UCR Radio by LiveGiggy</title>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="/bootstrap/5/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="/dmxAppConnect/dmxRouting/dmxRouting.js" defer></script>
+  <script src="/dmxAppConnect/dmxBootstrap5Navigation/dmxBootstrap5Navigation.js" defer></script>
+  <script src="/dmxAppConnect/dmxBrowser/dmxBrowser.js" defer></script>
+  <script src="/dmxAppConnect/dmxBootstrap5Modal/dmxBootstrap5Modal.js" defer></script>
+  <meta name="description" content="Website for the admission of songs to be played on UCR UnCommon Radio">
+  <meta name="keywords" content="UCR, livegiggy, radio, livemusic, live, liveradio, podcast, bands, music, consent, digital, rights, copyright, copyrighted, protection, terms, of, service, agreement, songs, song, artist, artists
+">
+  <meta property="og:image" content="'/assets/images/LIVEGIGGY_browser_logo_-120-×-120-px.png'">
+  <meta property="og:url" content="https://ucr.livegiggy.com">
+  <meta property="og:title" content="UCR UnCommon Radio by LiveGiggy">
+  <meta property="og:site_name" content="UCR">
+  <link rel="stylesheet" href="/dmxAppConnect/dmxValidator/dmxValidator.css" />
+  <script src="/dmxAppConnect/dmxValidator/dmxValidator.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.17.7/dist/tagify.min.js" defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.17.7/dist/tagify.css" />
+  <script src="/dmxAppConnect/dmxTagify/dmxTagify.js" defer></script>
+  <link rel="stylesheet" href="/dmxAppConnect/dmxMediumEditor/medium-editor.css" />
+  <script src="/dmxAppConnect/dmxMediumEditor/medium-editor.js" defer></script>
+  <link rel="stylesheet" href="/dmxAppConnect/dmxMediumEditor/dmxMediumEditor.css" />
+  <script src="/dmxAppConnect/dmxMediumEditor/dmxMediumEditor.js" defer></script>
+  <link rel="stylesheet" href="/dmxAppConnect/dmxMediumEditor/themes/flat.css" />
+  <link rel="stylesheet" href="/dmxAppConnect/dmxMediumEditorImageUpload/dmxMediumEditorImageUpload.css" />
+  <script src="/dmxAppConnect/dmxMediumEditorImageUpload/dmxMediumEditorImageUpload.js" defer></script>
+  <link rel="icon" type="image/png" href="/assets/images/icon.png" sizes="16x16" />
+
+
+  <link rel="stylesheet" href="/dmxAppConnect/dmxNotifications/dmxNotifications.css" />
+  <script src="/dmxAppConnect/dmxNotifications/dmxNotifications.js" defer></script>
+  <script src="/dmxAppConnect/dmxDataTraversal/dmxDataTraversal.js" defer></script>
+  <link rel="stylesheet" href="/dmxAppConnect/dmxDropzone/dmxDropzone.css" />
+  <script src="/dmxAppConnect/dmxDropzone/dmxDropzone.js" defer></script>
+  <script src="/dmxAppConnect/dmxS3Upload/dmxS3Upload.js" defer></script>
+  <script src="/dmxAppConnect/dmxBackgroundVideo/dmxBackgroundVideo.js" defer></script>
+</head>
+<div class="modal" id="modalterms" is="dmx-bs5-modal" tabindex="-1">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-light bg-dark border-bottom-0">
+        <h5 class="modal-title">Terms and Conditions</h5>
+      </div>
+      <div class="modal-body bg-dark text-light">
+        <p>By agreeing with these Terms and Conditions you consent to and license us to publish your own music and play it on our platform for an indefinite period of time.&nbsp;
+        <p>We do not own your music, this means you are in control and you will stay in control and retain all the rights to your music and your content. If you no longer want us to play your song(s) or want the already published content to be removed, you can send us an email stating such, where upon we will remove the music from the broadcast within a reasonable period of time.&nbsp;</p>
+        <p>We play your music for promotional purposes, for you as an artist as well as the promotion of our platform, and we expect the upload(s) of your songs to be original works of which you are the legal owner. Remember the content you send remains under your ownership or control. Please ensure again that the uploaded content is indeed yours and your content does not infringe on any rights. If a third party makes a claim that the rights to the music belong to them, or you might be infringing on any rights at all for that matter, then you are responsible for any and all material and immaterial damages that may follow from this. You are also the one who is legally responsible for the broadcasted music and therefor are liable for all damages.&nbsp;</p>
+        <p>When a third party states a claim on the music you provided to us for broadcasting, we will contact you and inform you of the notice that we received and send you a copy of the notice of copyright infringement if available, or otherwise applicable grievances pertaining to having to remove your song(s). As a precaution we will remove said songs as stated in the received claim and will not put the song(s) up again until the matter between you and the third party is fully resolved. If you can provide us with documentation that indicates that you are the rightful owner and the claim is obviously bogus, we'll restore the broadcast of course.&nbsp;</p>
+        <p>You are acknowledging to have read these Terms and Conditions and by digitally signing and confirming the form on the webpage ucr.livegiggy.com, you state you understand these Terms and Conditions, took complete notice,&nbsp; and fully consent to them.&nbsp;</p>
+        <p>Rather obviously we won't play any content that might offend or grieve other people in any way possible, specifically targeting race, religion or otherwise. Also too explicit lyrics will be a ground for removal or not adding your uploaded song(s). We make the decision to play your songs(s) and there's no appeal possible if we don't, or won't play it anymore.&nbsp;</p>
+        <p>UCR will not charge you any amount of money for the promotion of your songs or the continuous play of the songs in the broadcast(s) of UCR. All this is free and will remain so, and is meant for the benefit of you as well as us.&nbsp;</p>
+        <p>Thank you for your patience reading this! ;-)</p>
+        <p>&nbsp;&nbsp;</p>
+        </p>
+      </div>
+      <div class="modal-footer text-light bg-dark border-top-0">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+      <nav class="navbar navbar-expand-lg navbar-dark text-light bg-dark" data-bs-theme="dark">
+        <a class="navbar-brand" href="#"><img class="img-fluid ms-lg-2" src="/assets/images/radio.jpeg" width="50" dmx-on:touchstart="browser1.goto('/')"></a>
+        <a class="navbar-brand ms-auto text-warning bg-transparent ps-lg-2 pe-lg-2" href="#" dmx-on:click="browser1.goto('/')">UCR Radio by LiveGiggy</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar1_collapse" aria-controls="navbar1_collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar1_collapse">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="#" dmx-on:click="browser1.goto('https://www.livegiggy.com')">LiveGiggy-Site</a>
+            <a class="nav-item nav-link text-light bg-secondary-subtle" href="#" dmx-on:click="modalWhatswhat.show()">About</a>
+            <a class="nav-item nav-link text-info" href="#" dmx-on:click="modalterms.show()">Terms and Conditions</a>
+            <a class="nav-item nav-link" href="#" dmx-on:click="modal_contact.show()">Contact</a>
+            <a class="nav-item nav-link ms-lg-5" href="/login" dmx-on:click="">Login</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="modal" id="modal_contact" is="dmx-bs5-modal" tabindex="-1">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <dmx-serverconnect id="conn_get_eml" url="/api/useradd/set_eml"></dmx-serverconnect>
+      <div class="modal-header text-light bg-dark border-bottom-0">
+        <h5 class="modal-title">Contact us:</h5>
+        <button id="btn1" class="btn text-light" dmx-on:click="modal_contact.hide()"><i class="fas fa-times-circle fa-lg"></i></button>
+      </div>
+      <div class="modal-body bg-dark text-light">
+        <p class="text-lg-center text-center">You can reach us by using the following emailaddresses:<br><br><a dmx-bind:href="conn_get_eml.data.eml_lnk" dmx-text="conn_get_eml.data.eml">ucr@livegiggy.com<br></a><br><br>&amp;<br><br><a dmx-bind:href="conn_get_eml.data.eml_lnk2" dmx-text="conn_get_eml.data.eml2">info@livegiggy.com</a> (for more general questions)&nbsp;<br><br>Don't hesitate to contact us!</p>
+      </div>
+      <div class="modal-footer text-light bg-dark border-top-0">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal border-0" id="modalWhatswhat" is="dmx-bs5-modal" tabindex="-1">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-light bg-dark border-bottom-0">
+        <h5 class="modal-title">About</h5>
+        <i class="fas fa-times-circle fa-lg" dmx-on:click="modalWhatswhat.hide()"></i>
+      </div>
+      <div class="modal-body bg-dark text-light">
+        <p>UCR Radio is a part of the <a href="https://www.livegiggy.com">LiveGiggy</a> website and presented to you by Luca, Ray and Michel. It's a personal selection out of all the songs that are being sent to us, or some out of our own collection that we ourselves choose to play. As UnCommon Radio we want to give airtime to artists who still dare to dream.<br><br>This page is aimed at informing you of your Digital Rights and the Copyrights on your music. You're asking us to play your song and we take you serious as an artist of course and would like to let our audience hear it. That's why we feel the need to protect you, as well as that we are protected at the same time. &nbsp;<br><br>So, please fill out the form, take notice of the Terms and Conditions that apply to UCR and reply to the email that we'll send to you; we in turn promise we'll listen to your song and if it feels right, we'll play it during our broadcast!&nbsp;<br><br>Thanks in advance, you there with the beating heart and the dream that lives within you...! Keep on keepin' on!</p>
+      </div>
+      <div class="modal-footer bg-dark border-top-0">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div is="dmx-browser" id="browser1" dmx-on:click=""></div>
+
+<body is="dmx-app" id="main" style="--bs-body-bg: #222429; --bs-body-color: #222429;">
+  <div is="dmx-view" id="content">
+    <%- await include(content, locals); %>
+  </div>
+  <script src="/bootstrap/5/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

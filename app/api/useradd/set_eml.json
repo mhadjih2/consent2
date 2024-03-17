@@ -1,0 +1,50 @@
+[
+  {
+    "name": "eml",
+    "module": "core",
+    "action": "setvalue",
+    "options": {
+      "value": "ucr@livegiggy.com",
+      "key": "g_eml"
+    },
+    "meta": [],
+    "outputType": "text",
+    "output": true
+  },
+  {
+    "name": "eml_lnk",
+    "module": "core",
+    "action": "setvalue",
+    "options": {
+      "value": "mailto:ucr@livegiggy.com",
+      "key": "g_eml_lnk"
+    },
+    "meta": [],
+    "outputType": "text",
+    "output": true
+  },
+  {
+    "name": "eml2",
+    "module": "core",
+    "action": "setvalue",
+    "options": {
+      "key": "g_eml2",
+      "value": "info@livegiggy.com"
+    },
+    "meta": [],
+    "output": true,
+    "outputType": "text"
+  },
+  {
+    "name": "eml_lnk2",
+    "module": "core",
+    "action": "setvalue",
+    "options": {
+      "key": "g_eml_lnk2",
+      "value": "mailto:info@livegiggy.com"
+    },
+    "meta": [],
+    "output": true,
+    "outputType": "text"
+  }
+]

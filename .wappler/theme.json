@@ -1,0 +1,16 @@
+{
+  "bootstrap5": {
+    "basic": {
+      "body-color": "#f8f9fa",
+      "body-bg": "#212529",
+      "enable-shadows": true,
+      "enable-gradients": true
+    },
+    "advanced": {
+      "input-bg": "#7c99b4",
+      "input-focus-bg": "#6486A6",
+      "input-group-addon-color": "#B9D1E9",
+      "link-color": "#F8F8FA"
+    }
+  }
+}

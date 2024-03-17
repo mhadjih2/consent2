@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "",
+        "module": "auth",
+        "action": "restrict",
+        "options": {
+          "provider": "security",
+          "permissions": [
+            "admin"
+          ],
+          "loginUrl": "/login",
+          "forbiddenUrl": "/login"
+        }
+      },
+      {
+        "name": "query",
+        "module": "dbconnector",
+        "action": "select",
+        "options": {
+          "connection": "db",
+          "sql": {
+            "type": "select",
+            "columns": [
+              {
+                "table": "consent",
+                "column": "*"
+              }
+            ],
+            "params": [],
+            "table": {
+              "name": "consent"
+            },
+            "primary": "consent_id",
+            "joins": [],
+            "query": "select * from `consent`"
+          }
+        },
+        "output": true,
+        "meta": [
+          {
+            "type": "number",
+            "name": "consent_id"
+          },
+          {
+            "type": "text",
+            "name": "first_name"
+          },
+          {
+            "type": "text",
+            "name": "last_name"
+          },
+          {
+            "type": "text",
+            "name": "artist_name"
+          },
+          {
+            "type": "text",
+            "name": "ISRC"
+          },
+          {
+            "type": "text",
+            "name": "song1_name"
+          },
+          {
+            "type": "datetime",
+            "name": "consent_date"
+          },
+          {
+            "type": "text",
+            "name": "emailaddress"
+          },
+          {
+            "type": "datetime",
+            "name": "mail_sent"
+          },
+          {
+            "type": "text",
+            "name": "verification_code"
+          },
+          {
+            "type": "datetime",
+            "name": "verification_date"
+          },
+          {
+            "type": "text",
+            "name": "song2_name"
+          },
+          {
+            "type": "text",
+            "name": "song3_name"
+          },
+          {
+            "type": "text",
+            "name": "upload1_name"
+          },
+          {
+            "type": "text",
+            "name": "upload2_name"
+          },
+          {
+            "type": "text",
+            "name": "upload3_name"
+          },
+          {
+            "type": "text",
+            "name": "upload1_url"
+          },
+          {
+            "type": "text",
+            "name": "upload2_url"
+          },
+          {
+            "type": "text",
+            "name": "upload3_url"
+          },
+          {
+            "type": "text",
+            "name": "bio"
+          },
+          {
+            "type": "text",
+            "name": "featured_image"
+          },
+          {
+            "type": "datetime",
+            "name": "apply_date"
+          },
+          {
+            "type": "text",
+            "name": "image2"
+          },
+          {
+            "type": "text",
+            "name": "image3"
+          },
+          {
+            "type": "datetime",
+            "name": "played_date"
+          },
+          {
+            "type": "text",
+            "name": "rating"
+          }
+        ],
+        "outputType": "array"
+      }
+    ]
+  }
+}
