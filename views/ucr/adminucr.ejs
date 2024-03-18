@@ -1,4 +1,4 @@
-<!-- Wappler include head-page="layouts/admin" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="adminucr" appconnect="local" components="{dmxBootstrap5TableGenerator:{},dmxFormatter:{},dmxBootstrap5Modal:{},dmxBootstrap5Offcanvas:{},dmxVideo:{},dmxDropzone:{},dmxValidator:{},dmxNotifications:{},dmxBootstrap5Toasts:{},dmxBrowser:{},dmxTyped:{}}" style="--bs-body-color: #f8f9fa;" -->
+<!-- Wappler include head-page="layouts/admin" fontawesome_5="cdn" bootstrap5="local" is="dmx-app" id="adminucr" appconnect="local" components="{dmxBootstrap5TableGenerator:{},dmxFormatter:{},dmxBootstrap5Modal:{},dmxBootstrap5Offcanvas:{},dmxVideo:{},dmxDropzone:{},dmxValidator:{},dmxNotifications:{},dmxBootstrap5Toasts:{},dmxBrowser:{},dmxTyped:{},dmxSummernote:{},dmxSummernoteFileUpload:{}}" style="--bs-body-color: #f8f9fa;" jquery_slim_35="cdn" -->
 <dmx-serverconnect id="conn_remove_song" url="/api/admin/remove_upload_song" noload="true"></dmx-serverconnect>
 <dmx-serverconnect id="conn_add_newrecord" url="/api/admin/add_record" noload="true"></dmx-serverconnect>
 <dmx-serverconnect id="conn_update_record" url="/api/admin/update_record" noload="true"></dmx-serverconnect>
@@ -164,8 +164,8 @@
             </div>
             <div class="form-group mb-3 row">
                 <label for="inp_ticker" class="col-sm-2 col-form-label">Ticker</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inp_ticker" name="ticker" aria-describedby="inp_ticker_help" placeholder="Enter Ticker">
+                <div class="text-black text-bg-light col-sm-10">
+                    <textarea id="ticker" name="ticker" is="dmx-summernote" dmx-bind:toolbar="[['style',['style']],['font',['bold','underline','clear','italic']],['fontname',['fontname']],['color',['color']]]" min-height="150" dialogs-fade="true" class="style6" disable-drop="true"></textarea>
                 </div>
             </div>
             <div class="form-group mb-3 row">

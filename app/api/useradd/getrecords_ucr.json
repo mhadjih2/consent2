@@ -1,0 +1,152 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "query",
+      "module": "dbconnector",
+      "action": "select",
+      "options": {
+        "connection": "db",
+        "sql": {
+          "type": "select",
+          "columns": [
+            {
+              "table": "consent",
+              "column": "first_name"
+            },
+            {
+              "table": "consent",
+              "column": "last_name"
+            },
+            {
+              "table": "consent",
+              "column": "artist_name"
+            },
+            {
+              "table": "consent",
+              "column": "song1_name"
+            },
+            {
+              "table": "consent",
+              "column": "song2_name"
+            },
+            {
+              "table": "consent",
+              "column": "song3_name"
+            },
+            {
+              "table": "consent",
+              "column": "upload1_url"
+            },
+            {
+              "table": "consent",
+              "column": "upload2_url"
+            },
+            {
+              "table": "consent",
+              "column": "upload3_url"
+            },
+            {
+              "table": "consent",
+              "column": "featured_image"
+            },
+            {
+              "table": "consent",
+              "column": "image2"
+            },
+            {
+              "table": "consent",
+              "column": "image3"
+            },
+            {
+              "table": "consent",
+              "column": "played_date"
+            }
+          ],
+          "params": [],
+          "table": {
+            "name": "consent"
+          },
+          "primary": "consent_id",
+          "joins": [],
+          "query": "select `first_name`, `last_name`, `artist_name`, `song1_name`, `song2_name`, `song3_name`, `upload1_url`, `upload2_url`, `upload3_url`, `featured_image`, `image2`, `image3`, `played_date` from `consent` order by `played_date` DESC",
+          "orders": [
+            {
+              "table": "consent",
+              "column": "played_date",
+              "direction": "DESC",
+              "condition": ""
+            }
+          ]
+        }
+      },
+      "output": true,
+      "meta": [
+        {
+          "type": "text",
+          "name": "first_name"
+        },
+        {
+          "type": "text",
+          "name": "last_name"
+        },
+        {
+          "type": "text",
+          "name": "artist_name"
+        },
+        {
+          "type": "text",
+          "name": "song1_name"
+        },
+        {
+          "type": "text",
+          "name": "song2_name"
+        },
+        {
+          "type": "text",
+          "name": "song3_name"
+        },
+        {
+          "type": "text",
+          "name": "upload1_url"
+        },
+        {
+          "type": "text",
+          "name": "upload2_url"
+        },
+        {
+          "type": "text",
+          "name": "upload3_url"
+        },
+        {
+          "type": "text",
+          "name": "featured_image"
+        },
+        {
+          "type": "text",
+          "name": "image2"
+        },
+        {
+          "type": "text",
+          "name": "image3"
+        },
+        {
+          "type": "datetime",
+          "name": "played_date"
+        }
+      ],
+      "outputType": "array"
+    }
+  }
+}

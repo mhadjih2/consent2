@@ -46,7 +46,8 @@
             },
             "primary": "consent_id",
             "joins": [],
-            "query": "select * from `consent`"
+            "query": "select * from `consent`",
+            "orders": []
           }
         },
         "output": true,
@@ -154,6 +155,14 @@
           {
             "type": "text",
             "name": "rating"
+          },
+          {
+            "type": "text",
+            "name": "ticker"
+          },
+          {
+            "type": "boolean",
+            "name": "manually_added"
           }
         ],
         "outputType": "array"

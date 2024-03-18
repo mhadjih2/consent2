@@ -18,3 +18,46 @@ height:150px
 #inp_ticker {
 height:100px  
 }
+.style1 {
+float: left;
+display: -webkit-box;
+display: -ms-flexbox;
+display: flex 
+}
+.style2 {
+position: absolute;
+top: 200px 
+}
+.style3 {
+position: absolute;
+right: 25px;
+top: 45px 
+}
+@media (min-width: 1200px) {
+.style3 {
+position: absolute  
+} 
+}
+.style4 {
+background-image: linear-gradient(247deg, #14283F 0%, white 84%, white 89%, white 100%) 
+}
+.style5 {
+right: 32px;
+bottom: 100px 
+}
+.wappler-temp {  
+}
+.wappler-temp {  
+}
+.wappler-temp {  
+}
+.wappler-temp {  
+}
+.wappler-temp {  
+}
+.wappler-temp {  
+}
+.style6 { 
+}
+#ticker {  
+}

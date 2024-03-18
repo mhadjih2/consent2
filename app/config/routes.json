@@ -26,6 +26,11 @@
       "path": "/confirm",
       "page": "confirm",
       "layout": "main"
+    },
+    {
+      "path": "/previous",
+      "page": "previous",
+      "layout": "main"
     }
   ],
   "layouts": {

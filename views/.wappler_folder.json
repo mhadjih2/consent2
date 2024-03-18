@@ -9,5 +9,9 @@
   },
   "unsubscribe.ejs": {
     "layoutPage": "main"
+  },
+  "previous.ejs": {
+    "layoutPage": "main",
+    "description": ""
   }
 }

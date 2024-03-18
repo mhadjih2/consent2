@@ -44,6 +44,7 @@
   <script src="/dmxAppConnect/dmxDropzone/dmxDropzone.js" defer></script>
   <script src="/dmxAppConnect/dmxS3Upload/dmxS3Upload.js" defer></script>
   <script src="/dmxAppConnect/dmxBackgroundVideo/dmxBackgroundVideo.js" defer></script>
+  <script src="/dmxAppConnect/dmxFormRepeat/dmxFormRepeat.js" defer></script>
 </head>
 <div class="modal" id="modalterms" is="dmx-bs5-modal" tabindex="-1">
   <div class="modal-dialog" role="document">
@@ -81,7 +82,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbar1_collapse">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#" dmx-on:click="browser1.goto('https://www.livegiggy.com')">LiveGiggy-Site</a>
+            <a class="nav-item nav-link active" href="/previous" dmx-on:click="browser1.goto('https://www.livegiggy.com')" internal="true">Previous Episodes</a>
             <a class="nav-item nav-link text-light bg-secondary-subtle" href="#" dmx-on:click="modalWhatswhat.show()">About</a>
             <a class="nav-item nav-link text-info" href="#" dmx-on:click="modalterms.show()">Terms and Conditions</a>
             <a class="nav-item nav-link" href="#" dmx-on:click="modal_contact.show()">Contact</a>
