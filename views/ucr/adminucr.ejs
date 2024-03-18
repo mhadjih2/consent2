@@ -98,7 +98,7 @@
 <div class="offcanvas offcanvas-start w-75" id="offcanvas2" is="dmx-bs5-offcanvas" tabindex="-1" scroll="true">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title">Add new record</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button id="btn9" class="btn" dmx-on:click="offcanvas2.hide();browser1.reload()"><i class="far fa-times-circle fa-lg"></i></button>
     </div>
     <div class="offcanvas-body">
         <form is="dmx-serverconnect-form" id="serverconnectform2" method="post" action="/api/admin/add_record" dmx-generator="bootstrap5" dmx-form-type="horizontal">
@@ -165,12 +165,12 @@
             <div class="form-group mb-3 row">
                 <label for="inp_ticker" class="col-sm-2 col-form-label">Ticker</label>
                 <div class="text-black text-bg-light col-sm-10">
-                    <textarea id="ticker" name="ticker" is="dmx-summernote" dmx-bind:toolbar="[['style',['style']],['font',['bold','underline','clear','italic']],['fontname',['fontname']],['color',['color']]]" min-height="150" dialogs-fade="true" class="style6" disable-drop="true"></textarea>
+                    <textarea id="ticker" name="ticker" is="dmx-summernote" dmx-bind:toolbar="[['style',['style']],['font',['bold','underline','clear','italic']],['fontname',['fontname']],['color',['color']]]" min-height="150" dialogs-fade="true" class="style6" disable-drop="true" dmx-text=""></textarea>
                 </div>
             </div>
             <div class="form-group mb-3 row">
                 <div class="col-sm-2">&nbsp;</div>
-                <div class="col-sm-10">
+                <div class="col-sm-10 text-end">
                     <button type="submit" class="btn btn-primary" dmx-bind:disabled="state.executing" dmx-on:click="serverconnectform2.submit()"><span class="spinner-border spinner-border-sm" role="status" dmx-show="state.executing"></span>Save </button>
                 </div>
             </div>
@@ -279,6 +279,7 @@
             </div>
             <div class="modal-body text-light bg-dark">
                 <p>Bio says the following:<br><br>{{conn_getsinglerec.data.query.bio}}</p>
+                <p dmx-text="'Ticker says: '+conn_getsinglerec.data.query.ticker">A nice paragraph</p>
                 <hr>
                 <div class="container">
                     <div class="row">
@@ -316,7 +317,7 @@
                 <div class="container">
                     <h6 dmx-hide="(conn_getsinglerec.data.query.upload3_name.length() &lt; 1)">Song number 3: {{conn_getsinglerec.data.query.song3_name}}<br>Name upload: {{conn_getsinglerec.data.query.upload3_name}}</h6>
                     <div class="d-block">
-                        <video is="dmx-video" id="video3" controls="true" width="300" height="55" dmx-bind:src="conn_getsinglerec.data.query.upload3_url.replace('/public', ' ')" dmx-hide="(conn_getsinglerec.data.query.upload3_name.length() &lt; 1)" preload="auto"></video>
+                        <video is="dmx-video" id="video3" controls="true" width="300" height="55" dmx-bind:src="conn_getsinglerec.data.query.upload3_url.replace('/public', ' ')" dmx-hide="(conn_getsinglerec.data.query.upload3_url.length() &lt; 1)" preload="auto"></video>
                     </div>
                 </div>
             </div>
@@ -357,7 +358,7 @@
                         <td dmx-text="first_name" class="text-light"></td>
                         <td dmx-text="last_name" class="text-light"></td>
                         <td>
-                            <img class="img-thumbnail img-fluid" dmx-bind:src="featured_image.replace('/public', ' ')" width="150" height="150">
+                            <img class="img-thumbnail img-fluid" dmx-bind:src="featured_image.replace('/public', ' ')" width="150" height="150" dmx-on:click="conn_getsinglerec.load({consent_id: consent_id});modal_showinfo.show()">
                         </td>
                         <td dmx-text="artist_name" class="text-light"></td>
                         <td dmx-text="ISRC" class="text-light"></td>

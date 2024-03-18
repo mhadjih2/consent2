@@ -55,28 +55,23 @@
         "name": "Song1",
         "sub": [
           {
-            "type": "text",
-            "name": "name"
+            "name": "name",
+            "type": "text"
           },
           {
-            "type": "text",
-            "name": "type"
+            "name": "type",
+            "type": "text"
           },
           {
-            "type": "number",
-            "name": "size"
+            "name": "size",
+            "type": "number"
           },
           {
-            "type": "text",
-            "name": "error"
+            "name": "error",
+            "type": "text"
           }
         ],
         "outputType": "array"
-      },
-      {
-        "type": "text",
-        "fieldName": "bio",
-        "name": "bio"
       },
       {
         "type": "file",
@@ -88,20 +83,20 @@
         "name": "file_featured_image",
         "sub": [
           {
-            "type": "text",
-            "name": "name"
+            "name": "name",
+            "type": "text"
           },
           {
-            "type": "text",
-            "name": "type"
+            "name": "type",
+            "type": "text"
           },
           {
-            "type": "number",
-            "name": "size"
+            "name": "size",
+            "type": "number"
           },
           {
-            "type": "text",
-            "name": "error"
+            "name": "error",
+            "type": "text"
           }
         ],
         "outputType": "array"
@@ -110,64 +105,6 @@
         "type": "text",
         "fieldName": "ticker",
         "name": "ticker"
-      },
-      {
-        "type": "array",
-        "name": "record",
-        "sub": [
-          {
-            "type": "text",
-            "name": "upload[0]"
-          },
-          {
-            "type": "text",
-            "name": "upload[1]"
-          },
-          {
-            "type": "text",
-            "name": "upload[2]"
-          },
-          {
-            "type": "text",
-            "name": "upload0_url"
-          },
-          {
-            "type": "text",
-            "name": "upload1_url"
-          },
-          {
-            "type": "text",
-            "name": "upload2_url"
-          },
-          {
-            "type": "number",
-            "name": "consent_id"
-          },
-          {
-            "type": "number",
-            "name": "insert"
-          },
-          {
-            "type": "text",
-            "name": "upload1_path"
-          },
-          {
-            "type": "text",
-            "name": "upload2_path"
-          },
-          {
-            "type": "text",
-            "name": "upload1[0]"
-          },
-          {
-            "type": "text",
-            "name": "upload1[1]"
-          },
-          {
-            "type": "text",
-            "name": "upload1[2]"
-          }
-        ]
       }
     ]
   },
@@ -199,61 +136,71 @@
                 "table": "consent",
                 "column": "first_name",
                 "type": "text",
-                "value": "{{$_POST.first_name}}"
+                "value": "{{$_POST.first_name}}",
+                "recid": 1
               },
               {
                 "table": "consent",
                 "column": "last_name",
                 "type": "text",
-                "value": "{{$_POST.last_name}}"
+                "value": "{{$_POST.last_name}}",
+                "recid": 2
               },
               {
                 "table": "consent",
                 "column": "artist_name",
                 "type": "text",
-                "value": "{{$_POST.artist_name}}"
+                "value": "{{$_POST.artist_name}}",
+                "recid": 3
               },
               {
                 "table": "consent",
                 "column": "ISRC",
                 "type": "text",
-                "value": "{{$_POST.ISRC}}"
+                "value": "{{$_POST.ISRC}}",
+                "recid": 4
               },
               {
                 "table": "consent",
                 "column": "emailaddress",
                 "type": "text",
-                "value": "{{$_POST.emailaddress}}"
+                "value": "{{$_POST.emailaddress}}",
+                "recid": 5
               },
               {
                 "table": "consent",
                 "column": "ticker",
                 "type": "text",
-                "value": "{{$_POST.ticker}}"
+                "value": "{{$_POST.ticker}}",
+                "recid": 6
               },
               {
                 "table": "consent",
                 "column": "manually_added",
                 "type": "boolean",
-                "value": "1"
+                "value": "1",
+                "recid": 7
               },
               {
                 "table": "consent",
                 "column": "song1_name",
                 "type": "text",
-                "value": "{{$_POST.song1_name}}"
+                "value": "{{$_POST.song1_name}}",
+                "recid": 8
               },
               {
                 "table": "consent",
                 "column": "song2_name",
                 "type": "text",
-                "value": "{{$_POST.song2_name}}"
+                "value": "{{$_POST.song2_name}}",
+                "recid": 9
               },
               {
                 "table": "consent",
                 "column": "song3_name",
                 "type": "text",
-                "value": "{{$_POST.song3_name}}"
+                "value": "{{$_POST.song3_name}}",
+                "recid": 10
               }
             ],
             "table": "consent",
